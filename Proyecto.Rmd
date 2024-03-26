@@ -12,3 +12,9 @@ Comenzamos introduciendo los datos que vamos a tratar:
 Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
 en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
 
+Vamos a importar los datos de dicha carpeta para su posterior análisis:
+
+```{r}
+
+```
+
