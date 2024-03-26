@@ -1,11 +1,14 @@
 ---
-title: "Proyecto"
-author: "Victor Cardama"
+title: "Proyecto TD 2024"
+author: "Grupo C"
 date: "2024-03-26"
 output: html_document
 ---
-```{r}
-x<-1+1
-x
-```
+
+**PROYECTO TD 2024**
+
+Comenzamos introduciendo los datos que vamos a tratar:
+
+Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
+en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
 
