@@ -53,6 +53,7 @@ Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno s
 ```{r}
 df <- data.frame(ticket = unlist(tickets_txt))
 
+#Mostramos data frame creado:
 head(df)
 ```
 
