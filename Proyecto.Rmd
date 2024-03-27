@@ -46,6 +46,16 @@ txt <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 #Leemos ahora el contenido de uno:
 tickets_txt <- lapply(txt, readLines)
 
+
+# Función para fusionar elementos de una lista en una cadena de texto
+fusionar_elementos <- function(sublista) {
+  return(paste(sublista, collapse = " "))
+}
+
+# Aplicar la función a cada sublista en 'tickets_txt'
+tickets_txt <- lapply(tickets_txt, fusionar_elementos)
+
+
 ```
 
 Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno solo:
@@ -54,6 +64,7 @@ Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno s
 df <- data.frame(ticket = unlist(tickets_txt))
 
 head(df)
+
 ```
 
 
