@@ -67,19 +67,30 @@ texto_pdf <- function(pdf) {
 tickets_pdf <- lapply(pdf, texto_pdf)
 ```
 
-Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno solo:
 
 ```{r}
-df1 <- data.frame(ticket = unlist(tickets_txt), tipo = "TXT")
 
+
+# Función para fusionar elementos de la lista en una cadena de texto como ocurre en los pdfs
+fusionar_elementos <- function(sublista) {
+  return(paste(sublista, collapse = " "))
+}
+
+# Aplicar la función a cada sublista en 'tickets_txt'
+lista_fusionada_txt <- lapply(tickets_txt, fusionar_elementos)
+
+#Creamos el dataframe de los tickets txt
+df1 <- data.frame(ticket = unlist(lista_fusionada_txt), tipo = "TXT")
+
+#Lo mismo pero para los tipo pdf
 df2 <- data.frame(ticket = unlist(tickets_pdf), tipo = "PDF")
 
+#Fusionamos los dfs en uno solo
 df <- rbind(df1, df2)
 
-head(df)
+#Mostramos el resultado
+df
 ```
-
-
 
 
 
