@@ -45,36 +45,18 @@ txt <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 
 #Leemos ahora el contenido de uno:
 tickets_txt <- lapply(txt, readLines)
-tickets_txt
+
 ```
 
+Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno solo:
 
 ```{r}
-# Función para fusionar elementos de la lista en una cadena de texto como ocurre en los pdfs
-fusionar_elementos <- function(sublista) {
-  return(paste(sublista, collapse = " "))
-}
-
-# Aplicar la función a cada sublista en 'tickets_txt'
-lista_fusionada_txt <- lapply(tickets_txt, fusionar_elementos)
-
-
-
-#Creamos el dataframe de los tickets txt
-df1 <- data.frame(ticket = unlist(lista_fusionada_txt), tipo = "TXT")
-
-#Lo mismo pero para los tipo pdf
-df2 <- data.frame(ticket = unlist(tickets_pdf), tipo = "PDF")
-
-#Fusionamos los dfs en uno solo
-df <- rbind(df1, df2)
-
 df <- data.frame(ticket = unlist(tickets_txt))
 
-
-#Mostramos el resultado
-df
+head(df)
 ```
+
+
 
 
 
