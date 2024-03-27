@@ -12,9 +12,36 @@ Comenzamos introduciendo los datos que vamos a tratar:
 Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
 en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
 
-Vamos a importar los datos de dicha carpeta para su posterior análisis:
+Vamos a importar los datos de dicha carpeta para su posterior análisis.
 
-```{r}
+Primero establecemos liberías a utilizar:
+
+Establecemos instalación automática de los paquetes:
+
+```{r, message=FALSE} 
+#(package manager) para gestionar la instalación de librerías. 
+#message=FALSE no sale cuando se compila
+# Asegúrate que el paquete "pacman" está instalado
+if (!require("pacman")) install.packages("pacman")
+
+#Utilizamos la función `p_load` para la carga e instalación de paquetes
 
 ```
 
+```{r}
+p_load(ggplot2, knitr, tidyverse)
+```
+
+
+
+
+
+
+
+**PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
+
+1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
+
+2. ¿Cuál es el promedio de gasto de los tickets?
+
+3. ¿Producto más comprado en general?
