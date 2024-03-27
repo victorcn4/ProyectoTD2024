@@ -32,6 +32,21 @@ if (!require("pacman")) install.packages("pacman")
 p_load(ggplot2, knitr, tidyverse)
 ```
 
+Procedemos con la lectura de los ficheros en la carpeta data.
+Vamos a leer aquellos ficheros que contengan extensión .txt:
+
+```{r}
+#Archivos .txt de la carpeta 'data':
+#Para ello hacemos uso de la función list.files()
+#Estableceremos la carpeta y el patrón buscado
+#para leer dichos ficheros (txt):
+#full.names para ruta completa de archivos.
+txt <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
+
+#Leemos ahora el contenido de uno:
+tickets_txt <- lapply(txt, readLines)
+tickets_txt
+```
 
 
 
