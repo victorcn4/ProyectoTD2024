@@ -51,11 +51,7 @@ tickets_txt
 Vamos a convertir ambos en un dataframe para posteriormente combinarlos en uno solo:
 
 ```{r}
-df1 <- data.frame(ticket = unlist(tickets_txt), tipo = "TXT")
-
-df2 <- data.frame(ticket = unlist(tickets_pdf), tipo = "PDF")
-
-df <- rbind(df1, df2)
+df <- data.frame(ticket = unlist(tickets_txt))
 
 head(df)
 ```
