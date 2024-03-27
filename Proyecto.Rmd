@@ -23,6 +23,8 @@ Establecemos instalación automática de los paquetes:
 #message=FALSE no sale cuando se compila
 # Asegúrate que el paquete "pacman" está instalado
 if (!require("pacman")) install.packages("pacman")
+if (!require("pdftools")) install.packages("pdftools") 
+if (!require("pdfetch")) install.packages("pdfetch")
 
 #Utilizamos la función `p_load` para la carga e instalación de paquetes
 
@@ -46,6 +48,23 @@ txt <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 #Leemos ahora el contenido de uno:
 tickets_txt <- lapply(txt, readLines)
 tickets_txt
+```
+Pasamos a leer los ficheros con extensión pdf:
+
+```{r}
+pdf <- list.files("data", pattern = "\\.pdf$", full.names = TRUE)
+
+#Necesitamos de una función que extraiga el texto
+#almacenado en los ficheros pdf sin generar errores
+#ya que al haber carácteres raros no los lee bien.
+#Hacemos uso de la función pdf_text:
+
+texto_pdf <- function(pdf) {
+  texto <- pdf_text(pdf)
+  return(texto)} 
+
+#Hacemos lo mismo que en txt para leer dicha info.
+tickets_pdf <- lapply(pdf, texto_pdf)
 ```
 
 
