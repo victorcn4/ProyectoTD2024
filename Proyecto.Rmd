@@ -55,13 +55,12 @@ factura <- ticket1[6,]
 productos <- ticket1[c(8:(len_ticket1-14)),]
 total <- ticket1[len_ticket1-13,]
 metodo_pago <- ticket1[len_ticket1-12,]
-nc_aut <- ticket1[len_ticket1-4,]
-aid_arc <- ticket1[len_ticket1-3,]
+N.C <- ticket1[len_ticket1-4,]
 importe <- ticket1[len_ticket1-1,]
 
 ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
                            telefono,fecha_hora_operador,factura,
-                           productos,total,metodo_pago,nc_aut,aid_arc,
+                           productos,total,metodo_pago,N.C,
                            importe)
 
 len_ticket1.tidy <- as.numeric(nrow(ticket1.tidy))
@@ -95,6 +94,49 @@ hora <- gsub("^.*\\b(\\d{2}:\\d{2}).*$", "\\1",ticket1.tidy$fecha_hora_operador)
 ticket1.tidy <- cbind(ticket1.tidy, Hora = hora)
 
 ticket1.tidy <- subset(ticket1.tidy, select = -fecha_hora_operador)
+ticket1.tidy <- subset(ticket1.tidy, select = -total)
+
+metodo_pago <- gsub("[^[:alpha:] ]", "", ticket1.tidy$metodo_pago)
+ticket1.tidy$metodo_pago <- metodo_pago
+
+importe <- gsub(".*\\b(\\d+[,.]\\d+).*$", "\\1", ticket1.tidy$importe)
+ticket1.tidy$importe <- importe
+
+ticket1.tidy <- separate(ticket1.tidy, codigo_postal_ciudad,c("codigo postal",
+                                                              "ciudad"), 
+                         sep = " ")
+N.C <-gsub("^N.C: (\\d+).*", "\\1", ticket1.tidy$N.C)
+ticket1.tidy$N.C <- N.C
+```
+
+
+Con esto, ya tenemos un data frame de un ticket suficientemente pulido para
+la extracción de información.
+
+Ahora expondremos una tabla para poder ver el resultado de nuestro data frame.
+
+
+```{r}
+variables <- c("Supermercado","Direccion","Codigo Postal","Ciudad","Telefono",
+               "Factura","Productos","Metodo de Pago","Número de Cliente",
+               "Cantidad","Precio","Importe","Fecha","Hora")
+
+descripcion <- c("Id del supermercado","Dirección",
+                 "Código Postal del supermercado","Ciudad",
+                 "Telefono del supermercado","Número de factura",
+                 "Productos adquiridos","Método de Pago","Id del cliente",
+                 "Cantidad de productos","Precio del producto","Importe final"
+                 ,"Fecha de la compra",
+                 "Hora de la compra")
+
+elemento <- c("MERCADONA, S.A A-46103834","C/ MENORCA (C.C. AQUA) 19","46023",
+              "Valencia","963319378","3075010680549","PATATA",
+              "TARJETA BANCARIA","077763746","1","6,49","60,47","18/12/2023",
+              "18:56")
+
+tabla <- data.frame(variables,descripcion,elemento)
+
+kable(tabla,caption = "Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 ```
 
 
