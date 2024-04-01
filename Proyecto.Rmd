@@ -1,0 +1,115 @@
+---
+title: "Proyecto TD 2024"
+author: "Grupo C"
+date: "2024-03-26"
+output: html_document
+---
+
+**PROYECTO TD 2024**
+
+Comenzamos introduciendo los datos que vamos a tratar:
+
+Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
+en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
+
+Vamos a importar los datos de dicha carpeta para su posterior análisis.
+
+Primero establecemos liberías a utilizar:
+
+Establecemos instalación automática de los paquetes:
+
+```{r, message=FALSE} 
+#(package manager) para gestionar la instalación de librerías. 
+#message=FALSE no sale cuando se compila
+# Asegúrate que el paquete "pacman" está instalado
+if (!require("pacman")) install.packages("pacman")
+
+#Utilizamos la función `p_load` para la carga e instalación de paquetes
+p_load(ggplot2, knitr, tidyverse)
+```
+
+Procedemos con la lectura de los ficheros en la carpeta data.
+Vamos a leer aquellos ficheros que contengan extensión .txt:
+
+```{r}
+#Archivos .txt de la carpeta 'data':
+#Para ello hacemos uso de la función list.files()
+#Estableceremos la carpeta y el patrón buscado
+#para leer dichos ficheros (txt):
+#full.names para ruta completa de archivos.
+list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
+
+#Leemos ahora el contenido de uno:
+ticket1 <- readLines(list_tickets[1], encoding = "UTF-8")
+
+ticket1 <- as.data.frame(ticket1)
+
+len_ticket1 <- as.numeric(nrow(ticket1))
+
+variables <- c("supermercado","direccion","codigo_postal_ciudad","telefono",
+               "fecha_hora_op","factura","descripcion","productos","total",
+               "metodo_de_pago","impuestos","total_impuestos","tarjeta",
+               "nc_aut","aid_aut","msg_verif","importe","devoluciones")
+
+supermercado <- ticket1[1,]
+direccion <- ticket1[2,]
+codigo_postal_ciudad <- ticket1[3,]
+telefono <- ticket1[4,]
+fecha_hora_operador <- ticket1[5,]
+factura <- ticket1[6,]
+descripcion <- ticket1[7,]
+productos <- ticket1[c(8:(len_ticket1-14)),]
+total <- ticket1[len_ticket1-13,]
+metodo_pago <- ticket1[len_ticket1-12,]
+tarjeta <- ticket1[len_ticket1-5,]
+nc_aut <- ticket1[len_ticket1-4,]
+aid_arc <- ticket1[len_ticket1-3,]
+verificacion <- ticket1[len_ticket1-2,]
+importe <- ticket1[len_ticket1-1,]
+devolucion <- ticket1[len_ticket1,]
+
+ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                           telefono,fecha_hora_operador,factura,descripcion,
+                           productos,total,metodo_pago,tarjeta,nc_aut,aid_arc,
+                           verificacion,importe,devolucion)
+ticket1.tidy
+
+len_ticket1.tidy <- as.numeric(nrow(ticket1.tidy))
+
+ticket1.tidy$supermercado[2:len_ticket1.tidy] <- NA
+ticket1.tidy$direccion[2:len_ticket1.tidy] <- NA
+ticket1.tidy$codigo_postal_ciudad[2:len_ticket1.tidy] <- NA
+ticket1.tidy$telefono[2:len_ticket1.tidy] <- NA
+ticket1.tidy$fecha_hora_operador[2:len_ticket1.tidy] <- NA
+ticket1.tidy$factura[2:len_ticket1.tidy] <- NA
+ticket1.tidy$descripcion[2:len_ticket1.tidy] <- NA
+ticket1.tidy$total[2:len_ticket1.tidy] <- NA
+ticket1.tidy$metodo_pago[2:len_ticket1.tidy] <- NA
+ticket1.tidy$tarjeta[2:len_ticket1.tidy] <- NA
+ticket1.tidy$nc_aut[2:len_ticket1.tidy] <- NA
+ticket1.tidy$aid_arc[2:len_ticket1.tidy] <- NA
+ticket1.tidy$verificacion[2:len_ticket1.tidy] <- NA
+ticket1.tidy$importe[2:len_ticket1.tidy] <- NA
+ticket1.tidy$devolucion[2:len_ticket1.tidy] <- NA
+```
+
+
+**PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
+
+1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
+
+2. ¿Cuál es el promedio de gasto de los tickets?
+
+3. ¿Producto más comprado en general?
+
+4. ¿En qué Mercadona se ha comprado más?
+
+5. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
+
+6. ¿Cuál es la franja horaria más habitual en que se han producido los tickets registrados?
+
+7. ¿Cuál es la categoría más comúnmente comprada en cada ticket?
+
+8. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
+
+9. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
