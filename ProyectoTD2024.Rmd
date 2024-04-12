@@ -1,0 +1,194 @@
+---
+title: "Proyecto TD 2024"
+author: "Grupo C"
+date: "2024-03-26"
+output: html_document
+---
+
+**PROYECTO TD 2024**
+
+Comenzamos introduciendo los datos que vamos a tratar:
+
+Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
+en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
+
+Vamos a importar los datos de dicha carpeta para su posterior análisis.
+
+Primero establecemos liberías a utilizar:
+
+Establecemos instalación automática de los paquetes:
+
+```{r, message=FALSE} 
+#(package manager) para gestionar la instalación de librerías. 
+#message=FALSE no sale cuando se compila
+# Asegúrate que el paquete "pacman" está instalado
+if (!require("pacman")) install.packages("pacman")
+
+#Utilizamos la función `p_load` para la carga e instalación de paquetes
+p_load(ggplot2, knitr, tidyverse,stringr,lubridate)
+```
+
+Procedemos con la lectura de los ficheros en la carpeta data.
+Vamos a leer aquellos ficheros que contengan extensión .txt:
+
+```{r}
+#Archivos .txt de la carpeta 'data':
+#Para ello hacemos uso de la función list.files()
+#Estableceremos la carpeta y el patrón buscado
+#para leer dichos ficheros (txt):
+#full.names para ruta completa de archivos.
+list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
+
+#Leemos ahora el contenido de uno:
+ticket1 <- readLines(list_tickets[1], encoding = "UTF-8")
+
+ticket1 <- as.data.frame(ticket1)
+
+len_ticket1 <- as.numeric(nrow(ticket1))
+
+supermercado <- ticket1[1,]
+direccion <- ticket1[2,]
+codigo_postal_ciudad <- ticket1[3,]
+telefono <- ticket1[4,]
+fecha_hora_operador <- ticket1[5,]
+factura <- ticket1[6,]
+productos <- ticket1[c(8:(len_ticket1-14)),]
+total <- ticket1[len_ticket1-13,]
+metodo_pago <- ticket1[len_ticket1-12,]
+N.C <- ticket1[len_ticket1-4,]
+importe <- ticket1[len_ticket1-1,]
+
+ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                           telefono,fecha_hora_operador,factura,
+                           productos,total,metodo_pago,N.C,
+                           importe)
+
+```
+
+Hasta aquí nos hemos dedicado a leer las lineas de un fichero txt que es el ticket y a partir de su estructura hemos creado un dataframe preliminar.
+
+Nos hemos basado en que las 7 primeras lineas y las últimas 13 lineas de el ticket siguen siempre la misma esstructura, siendo las 7 primeras lineas el supermercado, el codigo postal, la dirección, el teléfono ,la fecha y la hora y el numero de factura simplificada.
+
+Las ultimas 13 lineas siempre son el importe final, el metodo de pago, el numero del cliente, los impuestos, etc.
+
+Por tanto, lo único en lo que difieren unos tickets de otros son en la longitud de los productos adquiridos, es decir, el cuerpo intermedio del ticket.
+
+
+Ahora haremos un análisis más detallado de las características en las que nos hemos centrado para poder sacar información al finalizar este análisis.
+
+```{r}
+len_ticket1.tidy <- as.numeric(nrow(ticket1.tidy))
+
+numero_telefono <- gsub("TELÉFONO: ", "",ticket1.tidy$telefono)
+ticket1.tidy$telefono <- numero_telefono
+
+cantidades_prod <- ticket1.tidy$productos
+cantidades <- str_extract(cantidades_prod, "^\\d+")
+ticket1.tidy <- cbind(ticket1.tidy, Cantidades = cantidades)
+
+productos_sin_cantidad <- gsub("^\\d+\\s*", "", ticket1.tidy$productos)
+ticket1.tidy$productos <- productos_sin_cantidad
+
+nombres_productos_sin_kg <- gsub("[Kk][Gg]\\s*", "", ticket1.tidy$productos)
+ticket1.tidy$productos <- nombres_productos_sin_kg
+
+precios <- gsub(".*\\s(\\d+[,.]\\d+)$", "\\1", ticket1.tidy$productos)
+ticket1.tidy <- cbind(ticket1.tidy, Precios = precios)
+
+nombres_productos <- gsub("[^[:alpha:] ]", "", ticket1.tidy$productos)
+ticket1.tidy$productos <- nombres_productos
+
+id_factura <- gsub("[^0-9]", "", ticket1.tidy$factura)
+ticket1.tidy$factura <- id_factura
+
+fecha <- gsub("^(\\d{2}/\\d{2}/\\d{4}).*$", "\\1",ticket1.tidy$fecha_hora_operador)
+ticket1.tidy <- cbind(ticket1.tidy,Fecha = fecha)
+
+hora <- gsub("^.*\\b(\\d{2}:\\d{2}).*$", "\\1",ticket1.tidy$fecha_hora_operador)
+ticket1.tidy <- cbind(ticket1.tidy, Hora = hora)
+
+ticket1.tidy <- subset(ticket1.tidy, select = -fecha_hora_operador)
+ticket1.tidy <- subset(ticket1.tidy, select = -total)
+
+metodo_pago <- gsub("[^[:alpha:] ]", "", ticket1.tidy$metodo_pago)
+ticket1.tidy$metodo_pago <- metodo_pago
+
+importe <- gsub(".*\\b(\\d+[,.]\\d+).*$", "\\1", ticket1.tidy$importe)
+ticket1.tidy$importe <- importe
+
+ticket1.tidy <- separate(ticket1.tidy, codigo_postal_ciudad,c("codigo postal",
+                                                              "ciudad"), 
+                         sep = " ")
+
+N.C <-gsub("^N.C: (\\d+).*", "\\1", ticket1.tidy$N.C)
+ticket1.tidy$N.C <- N.C
+
+ticket1.tidy$Fecha <- dmy(ticket1.tidy$Fecha)
+
+ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
+```
+
+Para cada una de las columnas de nuestro data frame en bruto, aplicamos una serie de condiciones que nos permitirán "limpiar" los elementos no interesantes de nuestro análisis.
+
+Por ejemplo, si algunos productos tienen la cantidad adquirida delante, sabemos que el número delante del str será la cantidad adquirida y podemos almacenarla en otra columna, a la vez que la borramos de la variable de productos.
+
+Otro ejemplo es con la fecha y la hora.
+Al leerla en una linea nos queda un formato de esta manera: "d/m/Y XX:XX".
+Si queremos almacenarlas en variables diferentes, podemos poner una condicion de que los elementos de la columna fecha tengan esta estructura "d/m/Y" y los elementos que tengan estructura tipo "XX:XX" los podemos almacenar en otra variable.
+
+Por último, se debería hacer una comprobación para ver si hay alguna observación con valores faltantes para su posterior depuración, ya sea eliminando esa observación, o imputando otro tipo de dato según una serie de criterios.
+
+Con esto, ya tenemos un data frame de un ticket suficientemente pulido para
+la extracción de información.
+
+Ahora expondremos una tabla para poder ver el resultado de nuestro data frame.
+
+
+```{r}
+variables <- c("Supermercado","Direccion","Codigo Postal","Ciudad","Telefono",
+               "Factura","Productos","Metodo de Pago","Número de Cliente",
+               "Cantidad","Precio","Importe","Fecha","Hora")
+
+descripcion <- c("Id del supermercado","Dirección",
+                 "Código Postal del supermercado","Ciudad",
+                 "Telefono del supermercado","Número de factura",
+                 "Productos adquiridos","Método de Pago","Id del cliente",
+                 "Cantidad de productos","Precio del producto","Importe final"
+                 ,"Fecha de la compra",
+                 "Hora de la compra")
+
+elemento <- c("MERCADONA, S.A A-46103834","C/ MENORCA (C.C. AQUA) 19","46023",
+              "Valencia","963319378","3075010680549","PATATA",
+              "TARJETA BANCARIA","077763746","1","6,49","60,47","2023/12/18",
+              "18H 56M 0S")
+
+tabla <- data.frame(variables,descripcion,elemento)
+
+kable(tabla,caption = "Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
+```
+
+Con esta tabla, podemos observar claramente cada variable de interés para nuestro posterior análisis.
+
+**PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
+
+1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
+
+2. ¿Cuál es el promedio de gasto de los tickets?
+
+3. ¿Producto más comprado en general?
+
+4. ¿En qué Mercadona se ha comprado más?
+
+5. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
+
+6. ¿Cuál es la franja horaria más habitual en que se han producido los tickets registrados?
+
+7. ¿Cuál es la categoría más comúnmente comprada en cada ticket?
+
+8. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
+
+9. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
+
+
+
+
