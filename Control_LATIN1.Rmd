@@ -419,10 +419,22 @@ ticket17.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
 ```
 
 ```{r}
-list_tidy <- c(ticket1.tidy,ticket2.tidy,ticket3.tidy,ticket4.tidy,ticket5.tidy,
-               ticket6.tidy,ticket7.tidy,ticket8.tidy,ticket9.tidy,
-               ticket10.tidy,ticket11.tidy,ticket12.tidy,ticket13.tidy,
-               ticket14.tidy,ticket15.tidy,ticket16.tidy,ticket17.tidy)
+numero_telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
+ticket1.tidy$telefono <- numero_telefono
+
+fecha <- gsub("  OP: [123456789]*","",ticket1.tidy$fecha_hora_operador)
+ticket1.tidy$fecha_hora_operador <- fecha
+
+ticket1.tidy$fecha_hora_operador <- dmy_hm(ticket1.tidy$fecha_hora_operador)
+
+importe <- gsub("[[:alpha:]]", " ", ticket1.tidy$importe)
+ticket1.tidy$importe <-importe
+
+importe <- gsub("[[:space]]", "", ticket1.tidy$importe)
+ticket1.tidy$importe <- importe
+
+importe <- gsub(",",".", ticket1.tidy$importe)
+ticket1.tidy$importe <- importe
 
 
 ```
