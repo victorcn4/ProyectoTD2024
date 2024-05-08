@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "Jorge García"
+date: "2024-04-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, message=FALSE} 
+#(package manager) para gestionar la instalación de librerías. 
+#message=FALSE no sale cuando se compila
+# Asegúrate que el paquete "pacman" está instalado
+if (!require("pacman")) install.packages("pacman")
+
+#Utilizamos la función `p_load` para la carga e instalación de paquetes
+p_load(ggplot2, knitr, tidyverse,stringr,lubridate, png , reticulate)
+```
+
+```{r}
+list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
+
+ticket <- readLines(list_tickets[1])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+  
+
+  
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-11)),]
+importe <- ticket[len_ticket-1,]
+  
+  ticket.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+```
+
+
+
