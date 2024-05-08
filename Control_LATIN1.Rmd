@@ -18,9 +18,11 @@ if (!require("pacman")) install.packages("pacman")
 
 #Utilizamos la función `p_load` para la carga e instalación de paquetes
 p_load(ggplot2, knitr, tidyverse,stringr,lubridate, png , reticulate)
+
+rm(list = ls())
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 
 ticket <- readLines(list_tickets[1])
@@ -31,9 +33,7 @@ for (i in ticket){
   ticket <- gsub("Ñ","N",ticket)
   
 }
-  
 
-  
 ticket <- as.data.frame(ticket)
 len_ticket <- as.numeric(nrow(ticket))
 supermercado <- ticket[1,]
@@ -42,14 +42,389 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-11)),]
+productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-  ticket.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+  ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+  
+ticket <- readLines(list_tickets[2])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket2.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+  
+ticket <- readLines(list_tickets[3])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket3.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[4])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket4.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[5])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket5.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[6])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket6.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[7])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket7.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+ticket <- readLines(list_tickets[8])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket8.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[9])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket9.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[10])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket10.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[11])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket11.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[12])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket12.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[13])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket13.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[14])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket14.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[15])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket15.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[16])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket16.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
+                             telefono,fecha_hora_operador,factura,
+                             productos,importe)
+
+ticket <- readLines(list_tickets[17])
+
+for (i in ticket){
+
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- gsub("Ñ","N",ticket)
+  
+}
+ticket <- as.data.frame(ticket)
+len_ticket <- as.numeric(nrow(ticket))
+supermercado <- ticket[1,]
+direccion <- ticket[2,]
+codigo_postal_ciudad <- ticket[3,]
+telefono <- ticket[4,]
+fecha_hora_operador <- ticket[5,]
+factura <- ticket[6,]
+productos <- ticket[c(8:(len_ticket-14)),]
+importe <- ticket[len_ticket-1,]
+  
+ticket17.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
                              telefono,fecha_hora_operador,factura,
                              productos,importe)
 
 ```
 
+```{r}
+list_tidy <- c(ticket1.tidy,ticket2.tidy,ticket3.tidy,ticket4.tidy,ticket5.tidy,
+               ticket6.tidy,ticket7.tidy,ticket8.tidy,ticket9.tidy,
+               ticket10.tidy,ticket11.tidy,ticket12.tidy,ticket13.tidy,
+               ticket14.tidy,ticket15.tidy,ticket16.tidy,ticket17.tidy)
+
+
+```
 
 
