@@ -39,8 +39,13 @@ Vamos a leer aquellos ficheros que contengan extensión .txt:
 #full.names para ruta completa de archivos.
 list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 
+cifrado <- guess_encoding(list_tickets[1])
+
+cifrado_ticket <- cifrado[1,1]
 #Leemos ahora el contenido de uno:
-ticket1 <- readLines(list_tickets[1], encoding = "UTF-8")
+ticket1 <- readLines(list_tickets[1], encoding = as.character(cifrado_ticket))
+
+categorias <- c("Pescado","Frutas_Verduras")
 
 ticket1 <- as.data.frame(ticket1)
 
