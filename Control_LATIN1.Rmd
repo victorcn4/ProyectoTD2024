@@ -45,9 +45,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-  ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+  ticket1.tidy <- data.frame( supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
   
 ticket <- readLines(list_tickets[2])
 
@@ -68,9 +68,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket2.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket2.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
   
 ticket <- readLines(list_tickets[3])
 
@@ -91,9 +91,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket3.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket3.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[4])
 
@@ -114,9 +114,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket4.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket4.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[5])
 
@@ -137,9 +137,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket5.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket5.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[6])
 
@@ -160,9 +160,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket6.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket6.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[7])
 
@@ -183,9 +183,10 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket7.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket7.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
+
 ticket <- readLines(list_tickets[8])
 
 for (i in ticket){
@@ -205,9 +206,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket8.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket8.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[9])
 
@@ -228,9 +229,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket9.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket9.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[10])
 
@@ -251,9 +252,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket10.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket10.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[11])
 
@@ -274,9 +275,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket11.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket11.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos, 
+                             importe)
 
 ticket <- readLines(list_tickets[12])
 
@@ -297,9 +298,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket12.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket12.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[13])
 
@@ -320,9 +321,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket13.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket13.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[14])
 
@@ -343,9 +344,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket14.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket14.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[15])
 
@@ -366,9 +367,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket15.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket15.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[16])
 
@@ -389,9 +390,9 @@ factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
   
-ticket16.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+ticket16.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[17])
 
@@ -411,10 +412,10 @@ fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
 importe <- ticket[len_ticket-1,]
-  
-ticket17.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
-                             telefono,fecha_hora_operador,factura,
-                             productos,importe)
+
+ticket17.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
+                             telefono, fecha_hora_operador, factura, productos,
+                             importe)
 
 ticket <- readLines(list_tickets[18])
 
