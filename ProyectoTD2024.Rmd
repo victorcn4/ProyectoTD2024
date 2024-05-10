@@ -7,17 +7,22 @@ output: html_document
 
 **PROYECTO TD 2024**
 
-Comenzamos introduciendo los datos que vamos a tratar:
+Primero, vamos a empezar introduciendo todos los datos que queremos tratar:
+Entonces, el usuario al ir a comprar en Mercadona, tiene que pedir que le envien
+los tickets por el correo electrónico en lugar de recibirlos en papel. En ese 
+momento, los usuarios tendrían que poder ver los tickets perfectamente en pdf.
+Podemos observar que tenemos una carpeta 'data' en la que se encuentran 
+diferentes tickets.
+El objetivo que tenemos nosotros es analizarlos para realizar un seguimiento de 
+todo lo que se indica en esos tickets. La información que podemos encontrar en 
+los tickets es: evolución de dinero (en caso de que se pague en efectivo), 
+cuáles son los productos que la gente más compra, que mercadona es el que la 
+gente va mas a comprar, en que hora se suele ir mas a comprar...
 
-Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
-en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
+Una vez descrito nuestro objetivo, tenemos que importar los datos de la carpeta
+data, que ya ha sido nombrada anteriormente, para el análisis.
 
-Vamos a importar los datos de dicha carpeta para su posterior análisis.
-
-Primero establecemos liberías a utilizar:
-
-Establecemos instalación automática de los paquetes:
-
+Vamos a establecer la instalación automática de los paquetes:
 ```{r, message=FALSE} 
 #(package manager) para gestionar la instalación de librerías. 
 #message=FALSE no sale cuando se compila
@@ -28,8 +33,10 @@ if (!require("pacman")) install.packages("pacman")
 p_load(ggplot2, knitr, tidyverse,stringr,lubridate)
 ```
 
-Procedemos con la lectura de los ficheros en la carpeta data.
-Vamos a leer aquellos ficheros que contengan extensión .txt:
+Ahora queremos leer todos los ficheros que encontramos en la carpeta data, que 
+como sabemos son todos los tickets de Mercadona que hemos ido consiguiendo.
+Entonces, ahora queremos ir leyendo todos los ficheros(tickets) que 
+contengan o que esten guardados con la extensión .txt.
 
 ```{r}
 #Archivos .txt de la carpeta 'data':
