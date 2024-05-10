@@ -415,13 +415,13 @@ importe_total <- ticket[len_ticket-1,]
 
 ticket17.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
-                             importe)
+                             importe_total)
 
 ticket <- readLines(list_tickets[18])
 
 for (i in ticket){
   
-  ticket <- inconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
   ticket <- gsub("Ñ", "N", ticket)
 
 }
@@ -434,17 +434,17 @@ telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
-importe <- ticket[len_ticket-1,]
+importe_total <- ticket[len_ticket-1,]
 
 ticket18.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                             telefono, fecha_hora_operador, factura, productos,
-                            importe)
+                            importe_total)
 
 ticket <- readLines(list_tickets[19])
 
 for (i in ticket){
   
-  ticket <- inconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
   ticket <- gsub("Ñ","N", ticket)
   
 }
@@ -457,17 +457,17 @@ telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
-importe <- ticket[len_ticket-1,]
+importe_total <- ticket[len_ticket-1,]
 
 ticket19.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                             telefono, fecha_hora_operador, factura, productos,
-                            importe)
+                            importe_total)
 
 ticket <- readLines(list_tickets[20])
 
 for (i in ticket){
   
-  ticket <- inconv(ticket, "latin1", "ASCII", sub = "")
+  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
   ticket <- gsub("Ñ", "N", ticket)
   
 }
@@ -480,7 +480,7 @@ telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
 productos <- ticket[c(8:(len_ticket-14)),]
-importe <- ticket[len_ticket-1,]
+importe_total <- ticket[len_ticket-1,]
 
 ticket20.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad, 
                             telefono, fecha_hora_operador, factura, productos,
