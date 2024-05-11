@@ -5,6 +5,14 @@ date: "2024-03-26"
 output: html_document
 ---
 
+**INTRODUCCIÓN**
+
+El comercio minorista ha experimentado una transformación significativa en las últimas décadas, con la digitalización y la adopción de nuevas tecnologías que han impactado en la forma en que los consumidores realizan sus compras. En este contexto, la disponibilidad de datos detallados sobre las transacciones de compra se ha convertido en un activo invaluable para las empresas minoristas, permitiéndoles comprender mejor el comportamiento del cliente, optimizar la gestión de inventario y desarrollar estrategias de marketing más efectivas.
+
+En este sentido, Mercadona, una de las cadenas de supermercados más grandes y reconocidas en España, se encuentra en una posición privilegiada para aprovechar los datos generados por las transacciones de sus clientes. Con una amplia red de tiendas y una amplia variedad de productos, Mercadona está constantemente buscando formas de mejorar su oferta y satisfacer las necesidades cambiantes de sus clientes.
+
+En línea con esta visión, el presente estudio se centra en el análisis de los tickets de compra obtenidos en Mercadona, con el objetivo de extraer información valiosa sobre los patrones de compra, preferencias de productos, tendencias de gasto y otros aspectos relevantes relacionados con la experiencia del cliente. Al analizar estos datos de manera sistemática, podemos obtener una visión más clara y detallada de los hábitos de compra de los clientes, lo que a su vez puede informar decisiones estratégicas importantes para Mercadona.
+
 **PROYECTO TD 2024**
 
 Primero, vamos a empezar introduciendo todos los datos que queremos tratar:
@@ -77,16 +85,18 @@ ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
 
 ```
 
-Hasta aquí nos hemos dedicado a leer las lineas de un fichero txt que es el ticket y a partir de su estructura hemos creado un dataframe preliminar.
+Hasta ahora hemos leido solo las lineas que contienen los tickets, y con estas 
+estructuras hemos podido crear un dataframe.
 
-Nos hemos basado en que las 7 primeras lineas y las últimas 13 lineas de el ticket siguen siempre la misma esstructura, siendo las 7 primeras lineas el supermercado, el codigo postal, la dirección, el teléfono ,la fecha y la hora y el numero de factura simplificada.
+Podemos ver, como las 7 primeras líneas y las últimas 13 siempre siguen la misma
+estructura, porque es el metodo de pago, el importe final, la ubicación del
+Mercadona, ...
 
-Las ultimas 13 lineas siempre son el importe final, el metodo de pago, el numero del cliente, los impuestos, etc.
+Por tanto, las diferencias de los tickets siempre dependen de los productos y 
+la cantidad de productos que se compran.
 
-Por tanto, lo único en lo que difieren unos tickets de otros son en la longitud de los productos adquiridos, es decir, el cuerpo intermedio del ticket.
+Vamos a sacar un análisis mucho más detallado.
 
-
-Ahora haremos un análisis más detallado de las características en las que nos hemos centrado para poder sacar información al finalizar este análisis.
 
 ```{r}
 len_ticket1.tidy <- as.numeric(nrow(ticket1.tidy))
@@ -140,6 +150,11 @@ ticket1.tidy$Fecha <- dmy(ticket1.tidy$Fecha)
 ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
 ```
 
+Tenemos que analizar cada línea de los tickets, porque cada línea y cada signo
+que hay en los tickets se tiene que interpretar de una manera diferente. Porque 
+por ejemplo, como veremos abajo explicado, no podemos considerar igual la fila de
+la dirección, fecha, hora de la compra, ... que la cantidad comprada de un producto determinado.
+
 Para cada una de las columnas de nuestro data frame en bruto, aplicamos una serie de condiciones que nos permitirán "limpiar" los elementos no interesantes de nuestro análisis.
 
 Por ejemplo, si algunos productos tienen la cantidad adquirida delante, sabemos que el número delante del str será la cantidad adquirida y podemos almacenarla en otra columna, a la vez que la borramos de la variable de productos.
@@ -148,10 +163,15 @@ Otro ejemplo es con la fecha y la hora.
 Al leerla en una linea nos queda un formato de esta manera: "d/m/Y XX:XX".
 Si queremos almacenarlas en variables diferentes, podemos poner una condicion de que los elementos de la columna fecha tengan esta estructura "d/m/Y" y los elementos que tengan estructura tipo "XX:XX" los podemos almacenar en otra variable.
 
-Por último, se debería hacer una comprobación para ver si hay alguna observación con valores faltantes para su posterior depuración, ya sea eliminando esa observación, o imputando otro tipo de dato según una serie de criterios.
+Es muy importante ver si hay valores faltantes o NA, o valores que en general no 
+tienen demasiado sentido. Entonces, lo que habrá que hacer es:
+Se debería hacer una comprobación para ver si hay alguna observación con valores faltantes para su posterior depuración, ya sea eliminando esa observación, o imputando otro tipo de dato según una serie de criterios.
 
-Con esto, ya tenemos un data frame de un ticket suficientemente pulido para
-la extracción de información.
+Con todos estos cambios hechos, y con todas las líneas que podemos encontrar en
+un ticket de Mercadona, ya tendremos un data frame bien pulido, y en teoria, si 
+está hecho de forma eficiente, tendríamos que sacar toda la información sobre nuestra
+compra en este data frame.
+
 
 Ahora expondremos una tabla para poder ver el resultado de nuestro data frame.
 
