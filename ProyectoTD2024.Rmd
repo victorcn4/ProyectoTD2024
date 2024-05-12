@@ -41,6 +41,44 @@ general del cliente.
 **DESCRIPCIÓN DE DATOS**
 La descripción de los datos revela la naturaleza rica y variada de la información
 recopilada de los tickets de compra de Mercadona.
+Estos tickets, que constituyen la materia prima de nuestro análisis, representan
+instantáneas detallas de las transacciones comerciales realizadas por los 
+clientes en las tiendas de Mercadona. Almacenados en archivos de texto dentro de
+la carpeta designada como 'data', cada ticket es una fuente invaluable de datos 
+que proporciona una visión holística de la experiencia de compra del cliente.
+
+Cada ticket captura una amplia gama de información, desde detalles básicos como
+la ubicación del supermercado y la fecha de la transacción, hasta detalles 
+específicos como los productos adquiridos y el método de pago utilizado. La 
+inclusión de estos detalles es fundamental para comprender los hábitos de compra 
+de los clientes y las tendencias de consumo en Mercadona.
+
+Entre los datos clave incluidos en cada ticket se encuentran:
+- Información del Supermercado: Esto incluye el nombre del supermercado, su 
+identificación fiscal y posiblmente su ubicación específica, lo que proporciona
+contexto sobre la tienda en la que se realizó la compra.
+
+- Dirección y Datos de Contacto: Los tickets también suelen incluir la dirección
+completa del supermercado, lo que permite la geolocalización precisa de la tienda.
+Además, es común encontrar información de contacto, como números de teléfono, que
+pueden ser útiles para fines de seguimiento o consulta.
+
+- Detalles de la Transacción: Cada ticket registra la fecha y la hora exactas en
+que se realizó la compra, lo que permite un análisis detallado de los patrones de
+compra a lo largo del tiempo. Además, se proporciona un número de factura único 
+para cada transacción, lo que facilita la identificación y el seguimiento de 
+transacciones individuales.
+
+- Productos Adquiridos: Esta sección del ticket enumera todos los productos 
+comprados durante la transacción, junto con detalles como la cantidad adquirida
+y el precio unitario. Esta información es fundamental para comprender las 
+preferencias de los clientes y las tendencias de compra de productos específicos.
+
+- Método de Pago: Finalmente, cada ticket indica el método de pago utilizado para
+la transacción, lo que puede incluir efectivo, tarjeta de crédito, débito u otros
+métodos de pago electrónico. Este detalle es importante para comprender las 
+preferencias de pago de los clientes y la evolución de los métodos de pago en el
+tiempo.
 
 
 **PROYECTO TD 2024**
