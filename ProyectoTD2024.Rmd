@@ -7,11 +7,36 @@ output: html_document
 
 **INTRODUCCIÓN**
 
-El comercio minorista ha experimentado una transformación significativa en las últimas décadas, con la digitalización y la adopción de nuevas tecnologías que han impactado en la forma en que los consumidores realizan sus compras. En este contexto, la disponibilidad de datos detallados sobre las transacciones de compra se ha convertido en un activo invaluable para las empresas minoristas, permitiéndoles comprender mejor el comportamiento del cliente, optimizar la gestión de inventario y desarrollar estrategias de marketing más efectivas.
+El comercio minorista ha experimentado una transformación significativa en las 
+últimas décadas, con la digitalización y la adopción de nuevas tecnologías que 
+han impactado en la forma en que los consumidores realizan sus compras. En este 
+contexto, la disponibilidad de datos detallados sobre las transacciones de 
+compra se ha convertido en un activo invaluable para las empresas minoristas, 
+permitiéndoles comprender mejor el comportamiento del cliente, optimizar la 
+gestión de inventario y desarrollar estrategias de marketing más efectivas.
 
-En este sentido, Mercadona, una de las cadenas de supermercados más grandes y reconocidas en España, se encuentra en una posición privilegiada para aprovechar los datos generados por las transacciones de sus clientes. Con una amplia red de tiendas y una amplia variedad de productos, Mercadona está constantemente buscando formas de mejorar su oferta y satisfacer las necesidades cambiantes de sus clientes.
+En este sentido, Mercadona, una de las cadenas de supermercados más grandes y 
+reconocidas en España, se encuentra en una posición privilegiada para aprovechar
+los datos generados por las transacciones de sus clientes. Con una amplia red de
+tiendas y una amplia variedad de productos, Mercadona está constantemente 
+buscando formas de mejorar su oferta y satisfacer las necesidades cambiantes de 
+sus clientes.
 
-En línea con esta visión, el presente estudio se centra en el análisis de los tickets de compra obtenidos en Mercadona, con el objetivo de extraer información valiosa sobre los patrones de compra, preferencias de productos, tendencias de gasto y otros aspectos relevantes relacionados con la experiencia del cliente. Al analizar estos datos de manera sistemática, podemos obtener una visión más clara y detallada de los hábitos de compra de los clientes, lo que a su vez puede informar decisiones estratégicas importantes para Mercadona.
+En línea con esta visión, el presente estudio se centra en el análisis de los 
+tickets de compra obtenidos en Mercadona, con el objetivo de extraer información
+valiosa sobre los patrones de compra, preferencias de productos, tendencias de 
+gasto y otros aspectos relevantes relacionados con la experiencia del cliente. 
+Al analizar estos datos de manera sistemática, podemos obtener una visión más 
+clara y detallada de los hábitos de compra de los clientes, lo que a su vez 
+puede informar decisiones estratégicas importantes para Mercadona.
+
+Este informe se estructura en torno a una serie de preguntas de análisis 
+específicas, que abarcan desde la relación entre las compras individuales hasta 
+el análisis de tendencias a nivel agregado. A través de un enfoque riguroso de
+procesamiento de datos y análisis estadístico, buscamos proporcionar información
+relevante y perspicaz que pueda ser utilizada por Mercadona para mejorar la 
+eficiencia operativa, optimizar la gestión de inventario y mejorar la experiencia
+general del cliente.
 
 **PROYECTO TD 2024**
 
