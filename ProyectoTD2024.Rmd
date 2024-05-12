@@ -168,6 +168,21 @@ print(grafico_faltantes)
 
 ```
 
+**EXPLORACIÓN Y VISUALIZACIÓN**
+1. Análisis de Missing Data: Cuando nos adentramos en el análisis de los datos 
+de tickets, nos enfrentamos a la crucial tarea de comprender la presencia y 
+distribución de valores faltantes. Los datos incompletos pueden ser el resultado
+de una variedad de factores, cada uno de los cuales arroja luz sobre posibles 
+áreas problemáticas en nuestra base de datos.
+
+Por otro lado, los problemas de integración de datos pueden surgir cuando se 
+combinan diferentes fuentes de información. Las discrepancias en la estructura o
+el formato de los datos pueden dificulatar la integración completa, lo que a su 
+vez puede generar valores faltantes en ciertas áreas de nuestros registros de 
+tickets.
+
+Además, la falta de información en ciertas transacciones puede deberse a una 
+variedad de razones operativas o logísticas.
 
 **PROYECTO TD 2024**
 
