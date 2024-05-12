@@ -61,6 +61,12 @@ transformación de datos en formato "tidy" o "ordenado". Proporciona funciones
 para pivotar datos, separar y unir columnas, y reorganizar conjuntos de datos de
 manera que sea más fácil trabajar con ellos en el análisis posterior.
 
+4. lubridate: Cuando trabajamos con fechas y horas en R, la librería lubridate 
+resulta muy útil. Esta librería simplifica el manejo de fechas y horas, permitiendo
+realizar operaciones como extracción de componentes de fechas, cálculo de 
+diferencias entre fechas y manipulación de formatos de fecha y hora de manera 
+sencilla.
+
 
 
 **DESCRIPCIÓN DE DATOS**
