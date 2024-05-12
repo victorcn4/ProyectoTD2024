@@ -282,6 +282,33 @@ compras
 -Total de   62.05     61      15.24      0.21       -0.49
 importe
 
+**PROCESAMIENTO DE DATOS**
+El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
+analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
+diferente.
+
+1. Importación de Datos: En esta fase, los datoss de los tickets de Mercadona se
+cargan desde su fuente original, que podría ser una base de datos, un archivo CSV
+u otro formato de archivo. Es crucial asegurarse de que la importación se realize
+correctamente para garantizar la integridad de los datos.
+
+2. Limpieza de Datos: Una vez que los datos se cargan, es común encontrarse con 
+problemas como valores faltantes, formatos incorrectos o datos erróneos. Durante
+la limpieza de datos, se aplican diversas técnicas para aboradar estos problemas.
+
+- Extracción de Cantidades y Precios: Los productos en los tickets pueden tener 
+información asociada, como la cantidad y el precio. Se necesitará extraer esta 
+información para análisis posteriores.
+- Separación de Fecha y Hora: Si la fecha y la hora están combinadas en una sola
+columna, es necesario separarlas para facilitar su análisis temporal.
+- Corrección de Formatos: Los  datos pueden estar en formatos incorrectos o 
+inconsistentes. Es esencial estandarizar estos formatos para evitar confusiones.
+
+3. Estructuración de Datos: Una vez que los datos están limpios, se procede a 
+estructurarlos de manera que sean adecuados para el análisis. Esto puede implicar
+la creación de nuevas variables, la combinación de datos de diferentes fuentes 
+o la agregación de datos a diferentes niveles de granularidad.
+
 **PROYECTO TD 2024**
 
 Primero, vamos a empezar introduciendo todos los datos que queremos tratar:
