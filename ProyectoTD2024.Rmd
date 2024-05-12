@@ -8,7 +8,9 @@ output: html_document
 *RESUMEN*
 En la era actual, los datos se han convertido en una herramienta muy poderosa. 
 Al recopilar, procesar y utilizar datos, las empresas obtienen múltiples 
-beneficios, tanto económicos como estratégicos.
+beneficios, tanto económicos como estratégicos. Tal es el potencial de los datos
+que en las últimas décadas ha surgido y crecido un gran número de empresas 
+centradas exclusivamente en la gestión de datos.
 
 
 **1. INTRODUCCIÓN**
