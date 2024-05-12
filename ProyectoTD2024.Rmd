@@ -71,6 +71,13 @@ sencilla.
 opción excelente. Proporciona funciones para manipular y analizar cadenas de
 texto, incluyendo operaciones de búsqueda, reemplazo, división y extracción de patrones.
 
+6. knitr: Esta librería es fundamental para la generación de documentos dinámicos
+en R, permitiendo combinar código R con texto explicativo y resultados de análisis
+en un único documento. Con knitr, podemos crear informes, presentaciones o 
+documentos en formato HTML, PDF o Word que incluyan tanto el código utilizado en
+el análisis como los resultados obtenidos, lo que facilita la reproducibilidad y
+la comunicación de los resultados del análisis de datos.
+
 
 **DESCRIPCIÓN DE DATOS**
 La descripción de los datos revela la naturaleza rica y variada de la información
