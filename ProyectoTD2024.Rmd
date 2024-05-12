@@ -539,6 +539,7 @@ kable(tabla,caption = "Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 Con esta tabla, podemos observar claramente cada variable de interés para nuestro posterior análisis.
 
 **RESULTADOS**
+
 Los resultados obtenidos de este análisis ofrecen una visión detallada de los 
 comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a 
 los hábitos de gasto, con ciertos productos destacándose como favoritos entre los
@@ -547,9 +548,17 @@ picos de actividad en momentos específicos del día. Asimismo, el análisis rev
 las ubicaciones más frecuentadas por los clientes, lo que proporciona información
 útil sobre la distribución geográfica de la clientela de Mercadona.
 
-
 **CONCLUSIONES**
 
+Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
+significativas. En primer lugar, Mercadona puede aprobechar estos insights para
+optimizar su estrategia de productos, asegurando que los productos más populares
+estén simpere disponibles y promocionando aquellos que podrían tener un menor 
+rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
+ayudar a la gestión de inventario y la asignación de personal en las tiendas. 
+Por último, el análisis de las ubicaciones más concurridas puede respaldar 
+decisiones relacionadas con la expansión de tiendas o la reubicación de las 
+existentes para maximizar su alcance y conveniencia para los clientes.
 
 **PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
 
