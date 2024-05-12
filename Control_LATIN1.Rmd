@@ -49,6 +49,10 @@ importe_total <- ticket[len_ticket-1,]
                              telefono, fecha_hora_operador, factura, productos,
                              importe_total)
   
+```
+
+```{r}
+  
 ticket <- readLines(list_tickets[2])
 
 for (i in ticket){
@@ -489,13 +493,90 @@ ticket20.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
 ```
 
 ```{r}
+todos_productos <- c(ticket1.tidy$productos, ticket2.tidy$productos,
+                     ticket3.tidy$productos,ticket4.tidy$productos,
+                     ticket5.tidy$productos,ticket6.tidy$productos,
+                     ticket7.tidy$productos,ticket8.tidy$productos,
+                     ticket9.tidy$productos,ticket10.tidy$productos,
+                     ticket11.tidy$productos,ticket12.tidy$productos,
+                     ticket13.tidy$productos,ticket14.tidy$productos,
+                     ticket15.tidy$productos,ticket16.tidy$productos,
+                     ticket17.tidy$productos,ticket18.tidy$productos,
+                     ticket19.tidy$productos,ticket20.tidy$productos)
+
+todos_productos2 <- todos_productos
+todos_productos <- data.frame(todos_productos,todos_productos2)
+```
+
+```{r}
+todos_productos$todos_productos <- gsub("[[:digit:]]","",todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("[[:punct:]]","",todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("ENTRADA$|ENTRADA[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("SALIDA|SALIDA[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("PARKING$|PARKING[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("TOTAL$|TOTAL[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("Importe$|Importe[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("P Unit$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("Descripcin$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("IVA$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("BASE IMP",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("CUOTA$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("VISA",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("NC$|NC[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("AID A",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("kg",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+todos_productos$todos_productos <- gsub("BANCARIA$|BANCARIA[ ]+$",NA,todos_productos$todos_productos)
+View(todos_productos)
+
+productos_dep <- unique(todos_productos$todos_productos)
+```
+
+
+```{r}
 numero_telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
 ticket1.tidy$telefono <- numero_telefono
 
 fecha <- gsub("  OP: [123456789]*","",ticket1.tidy$fecha_hora_operador)
 ticket1.tidy$fecha_hora_operador <- fecha
 
-ticket1.tidy$fecha_hora_operador <- dmy_hm(ticket1.tidy$fecha_hora_operador)
+ticket1.tidy <- ticket1.tidy |> separate(col = fecha_hora_operador, 
+                                         into = c("Fecha","Hora"),sep = " ")
+
+ticket1.tidy$Fecha <- dmy(ticket1.tidy$Fecha)
+
+ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
 
 importe_total <- gsub("[[:alpha:]]", "", ticket1.tidy$importe_total)
 ticket1.tidy$importe_total <-importe_total
@@ -508,8 +589,6 @@ ticket1.tidy$importe_total <- importe_total
 
 importe_total <- gsub(":","",ticket1.tidy$importe_total)
 ticket1.tidy$importe_total <- importe_total
-
-
 ```
 
 
