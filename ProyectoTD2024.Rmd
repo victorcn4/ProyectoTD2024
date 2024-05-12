@@ -107,6 +107,18 @@ VARIABLE                                            DESCRIPCIÓN
                                                   en targeta o en efectivo.
 - Importe                                         - Precio total a pagar.
 
+**DATOS FALTANTES EN LOS TICKETS DE MERCADONA**4
+Para realizar un análisis de los datos faltantes en los tickets de Mercadona, primero necesitaríamos acceso a los datos y conocer su estructura. Sin embargo, puedo ofrecerte una descripción general de cóomo se podría abordar este análisis.
+
+1. Exploración de los datos: Lo primero sería cargar los datos de los tickets de Mercadona y explorar su estructura. Esto nos permitiría identificar las variables presentes en los tickets y entender cómo se almacenan los datos.
+
+2. Identificación de datos faltantes: Una vez que tengamos los datos cargados, podríamos identificar las variables que contienen valores faltantes. Esto se puede hacer calculando el procentaje de valores faltantes para cada variable y visualizando la distribución de los valores faltantes en un gráfico.
+
+3. Análisis de patrones de datos faltantes: Después de identificar las variables con datos faltantes, podráimos analizar los posibles patrones en los datos faltantes. Por ejemplo, podráimos investigar si hay algún patrón temporal en los datos faltantes o si ciertas variables tienden a tener más datos faltantes que otras.
+
+4. Imputación de datos faltantes: Dependiendo del contexto y la naturaleza de los datos, podráimos optar por imputar los valores faltantes utilizando técnicas como la imputación media, la imputación de vecinos más cercanos o modelos de imputación más avanzados. Sin embargo, es importante tener en cuenta que la imputación de datos faltantes debe realizarse con cuidado y teniendo en cuenta el impacto en los resultados del análisis.
+
+5. Evaluación del impacto de los datos faltantes: Finalmente, podríamos evaluar  el impacto de los datos faltantes en nuestros análisis. Esto podría implicar comparar los resultados de los análisis con y sin imputación de datos faltantes, o realizar análisis de sensibilidad para evaluar cómo varían los resultados bajo diferentes escenarios de imputación.
 
 **PROYECTO TD 2024**
 
