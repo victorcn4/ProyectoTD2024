@@ -5,7 +5,13 @@ date: "2024-03-26"
 output: html_document
 ---
 
-**INTRODUCCIÓN**
+*RESUMEN*
+En la era actual, los datos se han convertido en una herramienta muy poderosa. 
+Al recopilar, procesar y utilizar datos, las empresas obtienen múltiples 
+beneficios, tanto económicos como estratégicos.
+
+
+**1. INTRODUCCIÓN**
 
 El comercio minorista ha experimentado una transformación significativa en las 
 últimas décadas, con la digitalización y la adopción de nuevas tecnologías que 
@@ -37,6 +43,8 @@ procesamiento de datos y análisis estadístico, buscamos proporcionar informaci
 relevante y perspicaz que pueda ser utilizada por Mercadona para mejorar la 
 eficiencia operativa, optimizar la gestión de inventario y mejorar la experiencia
 general del cliente.
+
+
 
 **PROYECTO TD 2024**
 
