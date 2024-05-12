@@ -38,6 +38,9 @@ relevante y perspicaz que pueda ser utilizada por Mercadona para mejorar la
 eficiencia operativa, optimizar la gestión de inventario y mejorar la experiencia
 general del cliente.
 
+**LIBRERÍAS NECESARIAS**
+
+
 **DESCRIPCIÓN DE DATOS**
 La descripción de los datos revela la naturaleza rica y variada de la información
 recopilada de los tickets de compra de Mercadona.
@@ -334,7 +337,7 @@ Vamos a establecer la instalación automática de los paquetes:
 if (!require("pacman")) install.packages("pacman")
 
 #Utilizamos la función `p_load` para la carga e instalación de paquetes
-p_load(ggplot2, knitr, tidyverse,stringr,lubridate)
+p_load(ggplot2, knitr, tidyverse, stringr, lubridate, dplyr)
 ```
 
 Ahora queremos leer todos los ficheros que encontramos en la carpeta data, que 
