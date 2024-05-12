@@ -56,6 +56,13 @@ personalizables mediante una sintaxis declarativa. Con esta librería, podemos
 crear una amplia variedad de gráficos, incluyendo histogramas, gráficos de 
 dispersión, diagramas de caja y diagramas de barras, entre otros.
 
+3. tidyr: Esta librería se utiliza para realizar operaciones de limpieza y 
+transformación de datos en formato "tidy" o "ordenado". Proporciona funciones 
+para pivotar datos, separar y unir columnas, y reorganizar conjuntos de datos de
+manera que sea más fácil trabajar con ellos en el análisis posterior.
+
+
+
 **DESCRIPCIÓN DE DATOS**
 La descripción de los datos revela la naturaleza rica y variada de la información
 recopilada de los tickets de compra de Mercadona.
