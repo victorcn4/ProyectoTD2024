@@ -184,6 +184,75 @@ tickets.
 Además, la falta de información en ciertas transacciones puede deberse a una 
 variedad de razones operativas o logísticas.
 
+2. Estrategia de manejo de valores faltantes: La estrategia de manejo de valores
+faltantes que implementamos se diseño para aboradar la complejidad de los datos 
+incompletos de manera eficiente y precisa. Comenzamos este proceso calculando el
+porcentaje de valores faltantes para cada ticket individualmente, en lugar de
+simplemente observar la completitud de las columnas. Este enfoque nos brinda una
+visión más detallada y granular de la integridad de nuestros datos, ya que nos 
+permite evaluar la cantidad de información ausente en cada entrada de la base 
+de datos de tickets.
+
+Al calcular el porcentaje de valores faltantes para cada ticket, podemos 
+identificar patrones específicos de ausencia de datos, como aquellos tickets que
+carecen de información en múltiples campos o aquellos que están casi completos 
+pero tienen uno o dos campos importantes faltantes. Esta información detallada 
+nos ayuda a comprender mejor la naturaleza y la extensión de los datos faltantes
+en nuestro conjunto de datos, lo que a su vez nos permite tomar decisiones más 
+informadas sobre cómo abordar estos vacíos. 
+
+Además, al centrarnos en los tickets individualmente, podemos adaptar nuestras 
+estrategias de manejo de valores faltantes para aboradar las necesidades 
+específicas de cada entrada de la base de datos.
+
+3. Visualización de Valores Faltantes: Es una parte crucial del proceso de 
+análisis de datos, ya que nos ayuda a comprender la distribución y la magnitud 
+de los vacíos en nuestro conjunto de datos. Después de calcular los porcentajes
+de valores faltantes para cada ticket, buscamos representar esta información de
+manera clara y efectiva para facilitar su interpretación.
+
+Optamos por utilizar un gráfico de barras para visualizar los porcentajes de 
+valores faltantes en cada ticket. Este tipo de gráfico nos permite comparar 
+fácilmente la cantidad de valores faltantes entre diferentes tickets y 
+proporciona una representación visual intuitiva de la distribución de los vacíos
+en nuestros datos.
+
+Cada barra en el gráfico representa un ticket específico, y la altura de la barra
+indica el porcentaje de valores faltantes para ese ticket en particular. Esto 
+nos brinda una instantánea rápida y accesible de la integridad de cada entrada 
+en nuestra base de datos. Las barras más altas indican un mayor porcentaje de 
+valores faltantes en un ticket, mientraas que las barras más cortas representan 
+tickets con menos valores faltantes.
+
+Al observar este gráfico, podemos identificar fácilmente aquellos tickets que 
+presentan una alta proporción de valores faltantes. Estos tickets pueden señalar
+áreas problemáticas en nuestros datos, como transacciones incompletas o campos 
+que no se completaron correctamente durante la recopilación de datos.
+
+4. Intepretación Detallada: Al profundizar en la interpetación de la 
+visualización de valores faltantes, nos adentramos en un análisis detallado para
+comprender las implicaciones de estos vacíos en nuestros datos. Al identificar 
+los tickets con la mayor proporción de valores faltantes, dirigimos nustra 
+atención hacia estos casos específicos para entender mejor las posibles razones 
+detrás de la falta de datos.
+
+Podríamos encontrarnos con varias situaciones al examinar estos tickets con una
+alta proporción de valores faltantes. Esto podría indicar problemas en los 
+sistemas de registro de ventas o puntos de venta, lo que requeriría una 
+investigación adicional para comprender y corregir estos errores.
+
+Además, podríamos encontrarnos con tickets que tienen valores faltantes debido a
+errores en la entrada de datos o incosistencias en la forma en que se registraron
+ciertas transacciones. En tales casos, sería necesario revisar los procedimientos
+de entrada de datos y garantizar una mayor precisión y consistencia en la 
+recopilación de información para evitar futuros problemas de integridad de datos.
+
+Al realizar esta interpretación detallada, no solo identificamos áreas 
+problemáticas en nuestros datos, sino que también obtenenmos información valiosa
+sobre posibles mejoras en los procesos de recopilación, almacenamiento y  gestión
+de datos. Esto nos permite tomar medidas correctivas y preventivas para garantizar
+la calidad y la integridad de nuestros datos a largo plazo.
+
 **PROYECTO TD 2024**
 
 Primero, vamos a empezar introduciendo todos los datos que queremos tratar:
