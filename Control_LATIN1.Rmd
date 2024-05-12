@@ -563,13 +563,28 @@ View(todos_productos)
 productos_dep <- unique(todos_productos$todos_productos)
 ```
 
+```{r}
+todas_fech_horas
+```
+
 
 ```{r}
-numero_telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
-ticket1.tidy$telefono <- numero_telefono
+Cat_prod <- c("Frutas_Verduras","Hogar","Carnes","Drogueria","Lácteos","Congelados","Enlatados",
+              "Pasta","Bebidas","Aceite")
 
-fecha <- gsub("  OP: [123456789]*","",ticket1.tidy$fecha_hora_operador)
-ticket1.tidy$fecha_hora_operador <- fecha
+fv <- grep("PATATA",productos_dep)
+fv2 <- grep("TOMATE",productos_dep)
+fv3 <- grep("PLATANO",productos_dep)
+fv4 <- grep("MANZANA",productos_dep)
+
+```
+
+
+```{r}
+ticket1.tidy$telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
+
+
+ticket1.tidy$fecha_hora_operador <- gsub("  OP: [123456789]*","",ticket1.tidy$fecha_hora_operador)
 
 ticket1.tidy <- ticket1.tidy |> separate(col = fecha_hora_operador, 
                                          into = c("Fecha","Hora"),sep = " ")
@@ -578,17 +593,33 @@ ticket1.tidy$Fecha <- dmy(ticket1.tidy$Fecha)
 
 ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
 
-importe_total <- gsub("[[:alpha:]]", "", ticket1.tidy$importe_total)
-ticket1.tidy$importe_total <-importe_total
+ticket1.tidy$importe_total <- gsub("[[:alpha:]]", "", ticket1.tidy$importe_total)
 
-importe_total <- gsub(" ", "", ticket1.tidy$importe_total)
-ticket1.tidy$importe_total <- importe_total
+ticket1.tidy$importe_total <- gsub(" ", "", ticket1.tidy$importe_total)
 
-importe_total <- gsub(",",".", ticket1.tidy$importe_total)
-ticket1.tidy$importe_total <- importe_total
+ticket1.tidy$importe_total <- gsub(",",".", ticket1.tidy$importe_total)
 
-importe_total <- gsub(":","",ticket1.tidy$importe_total)
-ticket1.tidy$importe_total <- importe_total
+ticket1.tidy$importe_total <- gsub(":","",ticket1.tidy$importe_total)
+
+ticket1.tidy$telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
+
+
+ticket2.tidy$fecha_hora_operador <- gsub("  OP: [123456789]*","",ticket2.tidy$fecha_hora_operador)
+
+ticket2.tidy <- ticket1.tidy |> separate(col = fecha_hora_operador, 
+                                         into = c("Fecha","Hora"),sep = " ")
+
+ticket2.tidy$Fecha <- dmy(ticket2.tidy$Fecha)
+
+ticket2.tidy$Hora <- hm(ticket2.tidy$Hora)
+
+ticket2.tidy$importe_total <- gsub("[[:alpha:]]", "", ticket2.tidy$importe_total)
+
+ticket2.tidy$importe_total <- gsub(" ", "", ticket2.tidy$importe_total)
+
+ticket2.tidy$importe_total <- gsub(",",".", ticket2.tidy$importe_total)
+
+ticket2.tidy$importe_total <- gsub(":","",ticket2.tidy$importe_total)
 ```
 
 
