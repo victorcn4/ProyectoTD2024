@@ -67,6 +67,9 @@ realizar operaciones como extracción de componentes de fechas, cálculo de
 diferencias entre fechas y manipulación de formatos de fecha y hora de manera 
 sencilla.
 
+5. stringr: Para el manejo de cadenas de texto en R, la librería stringr es una 
+opción excelente. Proporciona funciones para manipular y analizar cadenas de
+texto, incluyendo operaciones de búsqueda, reemplazo, división y extracción de patrones.
 
 
 **DESCRIPCIÓN DE DATOS**
