@@ -80,6 +80,33 @@ métodos de pago electrónico. Este detalle es importante para comprender las
 preferencias de pago de los clientes y la evolución de los métodos de pago en el
 tiempo.
 
+*Table 1: Variables de interés para el estudio*
+VARIABLE                                            DESCRIPCIÓN
+- list_tickets                                    - Lista de tickets guardados en
+                                                 la carpeta 'data'.
+- Supermercado                                    - El supermercado donde se ha 
+                                                  hecho la compra.
+- Direccion                                       - La dirección donde se 
+                                                  encuentra el supermercado.
+- codigo_postal_ciudad                            - El codigo postal donde se
+                                                  encuentra la ciudad del
+                                                  supermercado.
+- Telefono                                        - El telefono del supermercado
+- Fecha_hora_operador                             - La fecha y la hora en que se
+                                                  produce la compra.
+- Factura                                         - La factura donde se registan
+                                                  todas las características de la
+                                                  compra.
+- Productos                                       - Todos los productos que se 
+                                                  han comprado.
+- Total                                           - El precio total que hay que
+                                                  pagar por los productos 
+                                                  comprados.
+- Metodo_pago                                     - El diferente metodo de pago
+                                                  que se usa, es decir, si es
+                                                  en targeta o en efectivo.
+- Importe                                         - Precio total a pagar.
+
 
 **PROYECTO TD 2024**
 
