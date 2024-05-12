@@ -539,8 +539,16 @@ kable(tabla,caption = "Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 Con esta tabla, podemos observar claramente cada variable de interés para nuestro posterior análisis.
 
 **RESULTADOS**
-Los resultados obtenidos de este análisis ofrecen una visión detallada de los comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a los hábitos de gasto, con ciertos productos destacándose como favoritos entre los clientes. Además, identificamos preferencias en cuanto al horario de compra, con picos de actividad en momentos específicos del día. Asimismo, el análisis revela las ubicaciones más frecuentadas por los clientes, lo que proporciona información útil sobre la distribución geográfica de la clientela de Mercadona.
+Los resultados obtenidos de este análisis ofrecen una visión detallada de los 
+comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a 
+los hábitos de gasto, con ciertos productos destacándose como favoritos entre los
+clientes. Además, identificamos preferencias en cuanto al horario de compra, con
+picos de actividad en momentos específicos del día. Asimismo, el análisis revela
+las ubicaciones más frecuentadas por los clientes, lo que proporciona información
+útil sobre la distribución geográfica de la clientela de Mercadona.
 
+
+**CONCLUSIONES**
 
 
 **PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
