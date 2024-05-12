@@ -96,7 +96,7 @@ de los clientes y las tendencias de consumo en Mercadona.
 
 Entre los datos clave incluidos en cada ticket se encuentran:
 - Información del Supermercado: Esto incluye el nombre del supermercado, su 
-identificación fiscal y posiblmente su ubicación específica, lo que proporciona
+identificación fiscal y posiblemente su ubicación específica, lo que proporciona
 contexto sobre la tienda en la que se realizó la compra.
 
 - Dirección y Datos de Contacto: Los tickets también suelen incluir la dirección
@@ -129,10 +129,10 @@ VARIABLE                                            DESCRIPCIÓN
                                                   hecho la compra.
 - Direccion                                       - La dirección donde se 
                                                   encuentra el supermercado.
-- codigo_postal_ciudad                            - El codigo postal donde se
+- codigo_postal_ciudad                            - El código postal donde se
                                                   encuentra la ciudad del
                                                   supermercado.
-- Telefono                                        - El telefono del supermercado
+- Telefono                                        - El teléfono del supermercado
 - Fecha_hora_operador                             - La fecha y la hora en que se
                                                   produce la compra.
 - Factura                                         - La factura donde se registan
