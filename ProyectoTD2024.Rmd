@@ -253,6 +253,17 @@ sobre posibles mejoras en los procesos de recopilación, almacenamiento y  gesti
 de datos. Esto nos permite tomar medidas correctivas y preventivas para garantizar
 la calidad y la integridad de nuestros datos a largo plazo.
 
+5. Acciones Siguientes: Basándonos en nuestra comprensión de la distribución de 
+valores faltantes, pudimos tomar decisiones informadas sobre las acciones 
+siguientes. Estas acciones podrían incluir la imputación de datos para ciertos 
+tickets, la eliminación de transacciones problemáticas o la recopilación 
+adicional de información para completar los registros.
+
+Además, esta exploración nos permitió establecer prioridades y desarrollar
+estrategias efectivas para garantizar la integridad y calidad de nuestros datos
+antes de continuar con análisis más avanzados o la implementación de modelos 
+predictivos.
+
 **PROYECTO TD 2024**
 
 Primero, vamos a empezar introduciendo todos los datos que queremos tratar:
