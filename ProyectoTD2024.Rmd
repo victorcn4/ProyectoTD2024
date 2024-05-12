@@ -40,11 +40,21 @@ general del cliente.
 
 **LIBRERÍAS NECESARIAS**
 
-En nuestro proyecto de análisis de tickets de Mercadona, hemos hecho uso de varias librerías en el lenguaje de programación R para llevar a cabo diferentes tareas de procesamiento, análisis y visualización de datos. Vamos a explicarla una por una:
+En nuestro proyecto de análisis de tickets de Mercadona, hemos hecho uso de varias
+librerías en el lenguaje de programación R para llevar a cabo diferentes tareas 
+de procesamiento, análisis y visualización de datos. Vamos a explicarla una por 
+una:
 
-1. dplyr: Esta es una de las librerías más populares para el manejo de datos en R. Proporciona una gramática consistente y fácil de usar para manipular conjuntos de datos, permitiendo realizar operaciones como filtrado, selección, agrupación y resumen de datos de forma eficiente.
+1. dplyr: Esta es una de las librerías más populares para el manejo de datos en R.
+Proporciona una gramática consistente y fácil de usar para manipular conjuntos 
+de datos, permitiendo realizar operaciones como filtrado, selección, agrupación
+y resumen de datos de forma eficiente.
 
-2.
+2. ggplot2: Se trata de una librería ampliamente utilizada para la visualización
+de datos en R. ggplot2 permite crear gráficos de alta calidad y altamente 
+personalizables mediante una sintaxis declarativa. Con esta librería, podemos 
+crear una amplia variedad de gráficos, incluyendo histogramas, gráficos de 
+dispersión, diagramas de caja y diagramas de barras, entre otros.
 
 **DESCRIPCIÓN DE DATOS**
 La descripción de los datos revela la naturaleza rica y variada de la información
