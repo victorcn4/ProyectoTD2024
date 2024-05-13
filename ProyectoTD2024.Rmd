@@ -323,6 +323,13 @@ compras
 -Total de   62.05     61      15.24      0.21       -0.49
 importe
 
+
+**DETECCIÓN DE ANOMALÍAS Y OUTLIERS**
+
+La detección de anomalías y outliers en los tickets de Mercadona implica 
+identificar transacciones o patrones de compra que se desvían significativamente
+de lo que sería considerado normal o típico.
+
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
 analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
