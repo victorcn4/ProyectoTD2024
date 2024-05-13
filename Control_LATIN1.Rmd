@@ -92,7 +92,7 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
+productos <- ticket[c(8:(len_ticket-15)),]
 importe_total <- ticket[len_ticket-1,]
   
 ticket3.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
@@ -138,7 +138,7 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
+productos <- ticket[c(8:(len_ticket-15)),]
 importe_total <- ticket[len_ticket-1,]
   
 ticket5.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
@@ -161,7 +161,7 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
+productos <- ticket[c(8:(len_ticket-15)),]
 importe_total <- ticket[len_ticket-1,]
   
 ticket6.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
@@ -230,7 +230,7 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
+productos <- ticket[c(8:(len_ticket-15)),]
 importe_total <- ticket[len_ticket-1,]
   
 ticket9.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
@@ -421,119 +421,6 @@ ticket17.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
                              importe_total)
 ```
-
-```{r}
-Productos <- c(ticket1.tidy$productos, ticket2.tidy$productos,
-                     ticket3.tidy$productos,ticket4.tidy$productos,
-                     ticket5.tidy$productos,ticket6.tidy$productos,
-                     ticket7.tidy$productos,ticket8.tidy$productos,
-                     ticket9.tidy$productos,ticket10.tidy$productos,
-                     ticket11.tidy$productos,ticket12.tidy$productos,
-                     ticket13.tidy$productos,ticket14.tidy$productos,
-                     ticket15.tidy$productos,ticket16.tidy$productos,
-                     ticket17.tidy$productos)
-
-Precios <- Productos
-
-todos_productos <- data.frame(Productos,Precios)
-```
-
-```{r}
-todos_productos$Productos <- gsub("[[:digit:]]","",todos_productos$Productos)
-
-todos_productos$Productos <- gsub("[[:punct:]]","",todos_productos$Productos)
-
-todos_productos$Productos <- gsub("kg",NA,todos_productos$Productos)
-
-productos_dep <- unique(todos_productos$Productos)
-
-pesos <- which(is.na(todos_productos$Productos))
-
-```
-
-```{r}
-todos_productos[pesos[1]-1,2] <- todos_productos[pesos[1],2]
-todos_productos[pesos[2]-1,2] <- todos_productos[pesos[2],2]
-todos_productos[pesos[3]-1,2] <- todos_productos[pesos[3],2]
-todos_productos[pesos[4]-1,2] <- todos_productos[pesos[4],2]
-todos_productos[pesos[5]-1,2] <- todos_productos[pesos[5],2]
-todos_productos[pesos[6]-1,2] <- todos_productos[pesos[6],2]
-todos_productos[pesos[7]-1,2] <- todos_productos[pesos[7],2]
-todos_productos[pesos[8]-1,2] <- todos_productos[pesos[8],2]
-todos_productos[pesos[9]-1,2] <- todos_productos[pesos[9],2]
-todos_productos[pesos[10]-1,2] <- todos_productos[pesos[10],2]
-todos_productos[pesos[11]-1,2] <- todos_productos[pesos[11],2]
-todos_productos[pesos[12]-1,2] <- todos_productos[pesos[12],2]
-todos_productos[pesos[13]-1,2] <- todos_productos[pesos[13],2]
-todos_productos[pesos[14]-1,2] <- todos_productos[pesos[14],2]
-todos_productos[pesos[15]-1,2] <- todos_productos[pesos[15],2]
-todos_productos[pesos[16]-1,2] <- todos_productos[pesos[16],2]
-todos_productos[pesos[17]-1,2] <- todos_productos[pesos[17],2]
-
-todos_productos[pesos[1],2] <- NA
-todos_productos[pesos[2],2] <- NA
-todos_productos[pesos[3],2] <- NA
-todos_productos[pesos[4],2] <- NA
-todos_productos[pesos[5],2] <- NA
-todos_productos[pesos[6],2] <- NA
-todos_productos[pesos[7],2] <- NA
-todos_productos[pesos[8],2] <- NA
-todos_productos[pesos[9],2] <- NA
-todos_productos[pesos[10],2] <- NA
-todos_productos[pesos[11],2] <- NA
-todos_productos[pesos[12],2] <- NA
-todos_productos[pesos[13],2] <- NA
-todos_productos[pesos[14],2] <- NA
-todos_productos[pesos[15],2] <- NA
-todos_productos[pesos[16],2] <- NA
-todos_productos[pesos[17],2] <- NA
-
-```
-
-```{r}
-
-todos_productos$Precios <- gsub("^.","",todos_productos$Precios)
-
-todos_productos$Precios <- gsub("[[:alpha:]]","",todos_productos$Precios)
-
-todos_productos$Precios <- gsub("[.]","",todos_productos$Precios)
-
-todos_productos$Precios <- gsub(",","X",todos_productos$Precios)
-
-todos_productos$Precios <- gsub("[[:punct:]]","",todos_productos$Precios)
-
-todos_productos$Precios <- gsub("X",".",todos_productos$Precios)
-
-todos_productos$Precios <- gsub("^[0-9]+[^,]","",todos_productos$Precios)
-
-todos_productos <- na.omit(todos_productos)
-
-todos_productos$Precios <-as.numeric(todos_productos$Precios)
-```
-
-```{r}
-todos_productos$Productos <- as.factor(todos_productos$Productos)
-
-table(todos_productos$Productos)
-```
-
-
-```{r}
-todos_productos$Precios <- gsub("[^0-9,]","",todos_productos$Precios)
-```
-
-
-```{r}
-Cat_prod <- c("Frutas_Verduras","Hogar","Carnes","Drogueria","Lácteos","Congelados","Enlatados",
-              "Pasta","Bebidas","Aceite")
-
-fv <- grep("PATATA",productos_dep)
-fv2 <- grep("TOMATE",productos_dep)
-fv3 <- grep("PLATANO",productos_dep)
-fv4 <- grep("MANZANA",productos_dep)
-
-```
-
 
 ```{r}
 ticket1.tidy$telefono <- gsub("[[:alpha:]]", "",ticket1.tidy$telefono)
@@ -912,4 +799,115 @@ fechas <- c(wday(fechas[1],label=TRUE),wday(fechas[2],label = TRUE),
             wday(fechas[15],label = TRUE),wday(fechas[16],label = TRUE),
             wday(fechas[17],label = TRUE))
 ```
+
+```{r}
+Productos <- c(ticket1.tidy$productos, ticket2.tidy$productos,
+                     ticket3.tidy$productos,ticket4.tidy$productos,
+                     ticket5.tidy$productos,ticket6.tidy$productos,
+                     ticket7.tidy$productos,ticket8.tidy$productos,
+                     ticket9.tidy$productos,ticket10.tidy$productos,
+                     ticket11.tidy$productos,ticket12.tidy$productos,
+                     ticket13.tidy$productos,ticket14.tidy$productos,
+                     ticket15.tidy$productos,ticket16.tidy$productos,
+                     ticket17.tidy$productos)
+
+Precios <- Productos
+
+todos_productos <- data.frame(Productos,Precios)
+```
+
+```{r}
+todos_productos$Productos <- gsub("[[:digit:]]","",todos_productos$Productos)
+
+todos_productos$Productos <- gsub("[[:punct:]]","",todos_productos$Productos)
+
+todos_productos$Productos <- gsub("kg",NA,todos_productos$Productos)
+
+productos_dep <- unique(todos_productos$Productos)
+
+pesos <- which(is.na(todos_productos$Productos))
+```
+
+```{r}
+todos_productos[pesos[1]-1,2] <- todos_productos[pesos[1],2]
+todos_productos[pesos[2]-1,2] <- todos_productos[pesos[2],2]
+todos_productos[pesos[3]-1,2] <- todos_productos[pesos[3],2]
+todos_productos[pesos[4]-1,2] <- todos_productos[pesos[4],2]
+todos_productos[pesos[5]-1,2] <- todos_productos[pesos[5],2]
+todos_productos[pesos[6]-1,2] <- todos_productos[pesos[6],2]
+todos_productos[pesos[7]-1,2] <- todos_productos[pesos[7],2]
+todos_productos[pesos[8]-1,2] <- todos_productos[pesos[8],2]
+todos_productos[pesos[9]-1,2] <- todos_productos[pesos[9],2]
+todos_productos[pesos[10]-1,2] <- todos_productos[pesos[10],2]
+todos_productos[pesos[11]-1,2] <- todos_productos[pesos[11],2]
+todos_productos[pesos[12]-1,2] <- todos_productos[pesos[12],2]
+todos_productos[pesos[13]-1,2] <- todos_productos[pesos[13],2]
+todos_productos[pesos[14]-1,2] <- todos_productos[pesos[14],2]
+todos_productos[pesos[15]-1,2] <- todos_productos[pesos[15],2]
+todos_productos[pesos[16]-1,2] <- todos_productos[pesos[16],2]
+todos_productos[pesos[17]-1,2] <- todos_productos[pesos[17],2]
+
+todos_productos[pesos[1],2] <- NA
+todos_productos[pesos[2],2] <- NA
+todos_productos[pesos[3],2] <- NA
+todos_productos[pesos[4],2] <- NA
+todos_productos[pesos[5],2] <- NA
+todos_productos[pesos[6],2] <- NA
+todos_productos[pesos[7],2] <- NA
+todos_productos[pesos[8],2] <- NA
+todos_productos[pesos[9],2] <- NA
+todos_productos[pesos[10],2] <- NA
+todos_productos[pesos[11],2] <- NA
+todos_productos[pesos[12],2] <- NA
+todos_productos[pesos[13],2] <- NA
+todos_productos[pesos[14],2] <- NA
+todos_productos[pesos[15],2] <- NA
+todos_productos[pesos[16],2] <- NA
+todos_productos[pesos[17],2] <- NA
+todos_productos[268,2] <- NA
+todos_productos[135,2] <- NA
+
+```
+
+```{r}
+pesos[1] <- pesos[1]-1
+pesos[2] <- pesos[2]-1
+pesos[3] <- pesos[3]-1
+pesos[4] <- pesos[4]-1
+pesos[5] <- pesos[5]-1
+pesos[6] <- pesos[6]-1
+pesos[7] <- pesos[7]-1
+pesos[8] <- pesos[8]-1
+pesos[9] <- pesos[9]-1
+pesos[10] <- pesos[10]-1
+pesos[11] <- pesos[11]-1
+pesos[12] <- pesos[12]-1
+pesos[13] <- pesos[13]-1
+pesos[14] <- pesos[14]-1
+pesos[15] <- pesos[15]-1
+pesos[16] <- pesos[16]-1
+pesos[17] <- pesos[17]-1
+
+todos_productos$Precios <- gsub("^.","",todos_productos$Precios)
+
+todos_productos$Precios <- gsub("[[:alpha:]]","", todos_productos$Precios)
+
+todos_productos <- na.omit(todos_productos)
+
+for (n in c(1:nrow(todos_productos))){
+  
+  a <- strsplit(todos_productos[n,2], " ")[[1]]
+  
+  todos_productos[n,2] <- a[length(a)]
+  
+}
+```
+
+
+```{r}
+todos_productos$Productos <- as.factor(todos_productos$Productos)
+
+table(todos_productos$Productos)
+```
+
 
