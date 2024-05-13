@@ -617,7 +617,8 @@ existentes para maximizar su alcance y conveniencia para los clientes.
 
 2. ¿Cuál es el promedio de gasto de los tickets?
 
-Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros. Lo podemos ver en nuestro análisi univariante
+Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
+Lo podemos ver en nuestro análisi univariante
 
 
 3. ¿Categoría y producto más comprados en general? Como podemos ver en la tabla
