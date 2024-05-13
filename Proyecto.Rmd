@@ -500,7 +500,7 @@ interactive_boxplot <- plot_ly(data = todos_productos, y = ~Precios, type = "box
 print(interactive_boxplot)
 ```
 Podemos afirmar que no existe ningún outlier en los precios totales, sin embargo si hacemos el estudio producto a 
-producto podemos observar varios outliers muy por encima de los percentiles. El máximo se situa en 15.5, puede parecer un precio no muy elevado, pero teniendo en cuenta que la mediana se situa en 2.2 podemos considerar dicho valor como outlier
+producto podemos observar varios outliers muy por encima de los percentiles. El máximo se situa en 15.7, puede parecer un precio no muy elevado, pero teniendo en cuenta que la mediana se situa en 2.2 podemos considerar dicho valor como outlier
 
 ## Análisis univariante.
 Diferenciaremos el análisis entre las variables de tipo numérico y las de tipo categórico presentes, ya que ciertos estadísticos descriptivos carecen de significado en las pertenecientes al útlimo tipo.
@@ -512,6 +512,24 @@ Por otra parte, dichos estadísticos se pueden representar en gráficos como: Bo
 Para variables de tipo categórico (cualitativas):
 Establecemos estadísticos como tablas de frecuencias, porcentajes... 
 Para representar estos estadísticos, lo hacemos en gráficos como sectores, barras, etc.
+
+```{r}
+# Filtrar los productos que aparecen más de una vez
+productos_filtrados <- todos_productos %>%
+  group_by(Productos) %>%
+  filter(n() > 2) %>%
+  ungroup()
+
+# Crear el gráfico de barras con los productos filtrados
+ggplot(productos_filtrados, aes(x = Productos)) + 
+  geom_bar(fill = "skyblue", color = "black") + 
+  labs(title = "Número de veces que que se compra cada producto", 
+       x = "Producto", 
+       y = "Número de veces")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 
 *-Variables de tipo numérico.*
 Hemos desarrollado una función para calcular estadísticas descriptivas de las variables numéricas clave. Estas estadísticas se presentan en la Tabla que haremos a continuación, que incluye la media, la mediana, la desviación estándar, la asimetría y la curtosis para cada variable numérica relevante en nuestro conjunto de datos:
@@ -529,42 +547,62 @@ Hemos desarrollado una función para calcular estadísticas descriptivas de las 
 *-Variables tipo categórico.*
 
 ```{r Figura2, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 2: Frecuencia por producto"}
+# Filtrar los productos que aparecen más de una vez
+productos_filtrados <- todos_productos %>%
+  group_by(Productos) %>%
+  filter(n() > 2) %>%
+  ungroup()
 
-# Normalizar los nombres de los productos
-productos_normalizados <- tolower(ticket1.tidy$productos)
-productos_normalizados <- gsub("[^a-z0-9]+", "", productos_normalizados)
-
-# Función para buscar coincidencias parciales
-buscar_coincidencias <- function(producto, productos) {
-  distancias <- stringdistmatrix(producto, productos, method = "lv")
-  coincidencias <- apply(distancias < 2, 2, any)
-  productos[coincidencias]
-}
-
-# Buscar coincidencias parciales para cada producto
-productos_agrupados <- sapply(productos_normalizados, buscar_coincidencias, productos = productos_normalizados)
-
-# Calcular la frecuencia de cada producto agrupado
-frecuencia_productos <- table(unlist(productos_agrupados))
-
-# Convertir a data frame
-frecuencia_productos <- as.data.frame(frecuencia_productos)
-names(frecuencia_productos) <- c("Producto", "Frecuencia")
-frecuencia_productos <- frecuencia_productos[order(-frecuencia_productos$Frecuencia),]
-
-# Graficar la distribución de productos
-ggplot(frecuencia_productos, aes(x = reorder(Producto, Frecuencia), y = Frecuencia)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "Distribución de Productos Comprados",
-       x = "Producto",
-       y = "Frecuencia") +
-  theme_minimal() +
+# Crear el gráfico de barras con los productos filtrados
+ggplot(productos_filtrados, aes(x = Productos)) + 
+  geom_bar(fill = "skyblue", color = "black") + 
+  labs(title = "Número de veces que que se compra cada producto (con más de 2 ocurrencias)", 
+       x = "Producto", 
+       y = "Número de veces")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
 
 ```
 
-En \@ref(fig:Figura2) vemos
+En \@ref(fig:Figura2) vemos como el producto más comprado, con diferencia, es el "queso lonchas cabra", seguido por "brotes tiernos maxi" y "queso fresco cabra" con la mitad de apariciones. Previamente se ha filtrado los productos para únicamente mostrar los productos que han sido comprados más de dos veces.
+
+```{r}
+filtro_dias<-tickets_juntos%>%group_by(Fecha)%>%summarise(ocurrencias=n())
+
+# Obtener el día de la semana para cada fecha
+dias_semana <- weekdays(filtro_dias$Fecha)
+
+library(ggplot2)
+library(dplyr)
+
+# Vector con los días de la semana en el orden deseado
+dias <- c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")
+
+
+# Convertir a factor con el orden deseado
+dias_semana <- factor(dias_semana, levels = dias)
+
+# Contar el número de ocurrencias de cada día
+ocurrencias <- table(dias_semana)
+
+# Calcular el porcentaje de ocurrencias de cada día
+porcentaje <- prop.table(ocurrencias) * 100
+
+# Crear un data frame con los resultados
+datos_grafico <- data.frame(dia_semana = names(ocurrencias), 
+                             ocurrencias = as.numeric(ocurrencias),
+                             porcentaje = as.numeric(porcentaje))
+
+# Crear el gráfico de barras
+ggplot(datos_grafico, aes(x = reorder(dias, ocurrencias), y = ocurrencias)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_text(aes(label = paste(round(porcentaje, 1), "%")), vjust = -0.5, color = "black") +
+  labs(title = "Número de ocurrencias por día de la semana",
+       x = "Día de la semana",
+       y = "Número de ocurrencias") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 
 ## Análisis multivariante.
 
@@ -632,6 +670,8 @@ bebidas, drogueria y charcutería.
 
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
+
+Los días que más se ha comprado son tanto martes como sábado, con un 23.5% de los tickets para cada día.
 
 6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
