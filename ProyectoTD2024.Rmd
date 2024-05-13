@@ -330,6 +330,13 @@ La detección de anomalías y outliers en los tickets de Mercadona implica
 identificar transacciones o patrones de compra que se desvían significativamente
 de lo que sería considerado normal o típico.
 
+1. Preprocesamiento de datos: Antes de detectar anomalías y outliers, es 
+fundamental realizar un preprocesamiento de los datos de los tickets de Mercadona.
+Esto implica limpiar los datos, estructurarlos adecuadamente y realizar 
+transformaciones necesarias para prepararlos para el análisis. Algunas técnicas
+comunes incluyen la extracción de información relevante de los tickets, como
+productos comprados, precios, fechas y horas de compra.
+
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
 analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
