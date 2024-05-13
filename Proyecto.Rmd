@@ -4,11 +4,11 @@ author: "Grupo C"
 date: "2024-03-26"
 output:
   
-  pdf_document:
+  bookdown::pdf_document2:
     toc: true
     toc_depth: 3
     number_sections: true
-  bookdown::pdf_document2:
+  pdf_document:
     toc: true
     toc_depth: 3
     number_sections: true
@@ -114,6 +114,8 @@ if (!require("pacman")) install.packages("pacman")
 
 #Utilizamos la función `p_load` para la carga e instalación de paquetes
 p_load(ggplot2, knitr, readr, tidyverse, stringr, lubridate, dplyr, tidyr, stringdist)
+
+rm(list=ls())
 ```
 
 
@@ -628,7 +630,6 @@ bebidas, drogueria y charcutería.
 
 4. ¿Cuál es el producto que más se ha comprado?
 
-Como vemos en el gráfico, el producto que más se ha comprado es la uva blanca, la cual tiene una frecuencia de 4 respecto a todos los otros productos que solo tienen frecuencia de 1
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
