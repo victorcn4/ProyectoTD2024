@@ -344,6 +344,28 @@ gastado en una transacción, la cantidad de productos comprados, la frecuencia d
 compra de ciertos productos o cualquier otra información relevante que pueda 
 indicar comportamientos inusuales.
 
+3. Selección de métodos de detección: Existen varios métodos y técnicas para 
+detectar anomalías y outliers en los datos de los tickets de Mercadona. Algunos 
+de los métodos comunes incluyen:
+
+- Estadísticas descriptivas: Calculando medidas estadísticas como la media, la 
+mediana, la desviación estándar y la varianza para identificar valores
+extremadamente altos o bajos.
+
+- Gráficos de caja (boxplots): Visualizando la distribución de las características
+relevantes mediante gráficos de caja para identificar valores atípicos.
+
+- Métodos basados en umbrales: Estableciendo umbrales o límites específicos para
+las características y identificando aquellos puntos que caen fuera de estos 
+límites como anomalías.
+
+- Algoritmos de aprendizaje automático: Utilizando algoritmos de detección de 
+anomalías supervisados o no supervisados, como Isolation Forest, Local Outlier 
+Factor (LOF) o One-Class SVM, para identificar patrones inusuales en los datos.
+
+
+
+
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
 analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
@@ -511,24 +533,34 @@ ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
 Tenemos que analizar cada línea de los tickets, porque cada línea y cada signo
 que hay en los tickets se tiene que interpretar de una manera diferente. Porque 
 por ejemplo, como veremos abajo explicado, no podemos considerar igual la fila de
-la dirección, fecha, hora de la compra, ... que la cantidad comprada de un producto determinado.
+la dirección, fecha, hora de la compra, ... que la cantidad comprada de un 
+producto determinado.
 
-Para cada una de las columnas de nuestro data frame en bruto, aplicamos una serie de condiciones que nos permitirán "limpiar" los elementos no interesantes de nuestro análisis.
+Para cada una de las columnas de nuestro data frame en bruto, aplicamos una serie
+de condiciones que nos permitirán "limpiar" los elementos no interesantes de nuestro
+análisis.
 
-Por ejemplo, si algunos productos tienen la cantidad adquirida delante, sabemos que el número delante del str será la cantidad adquirida y podemos almacenarla en otra columna, a la vez que la borramos de la variable de productos.
+Por ejemplo, si algunos productos tienen la cantidad adquirida delante, sabemos 
+que el número delante del str será la cantidad adquirida y podemos almacenarla 
+en otra columna, a la vez que la borramos de la variable de productos.
 
 Otro ejemplo es con la fecha y la hora.
 Al leerla en una linea nos queda un formato de esta manera: "d/m/Y XX:XX".
-Si queremos almacenarlas en variables diferentes, podemos poner una condicion de que los elementos de la columna fecha tengan esta estructura "d/m/Y" y los elementos que tengan estructura tipo "XX:XX" los podemos almacenar en otra variable.
+Si queremos almacenarlas en variables diferentes, podemos poner una condicion de
+que los elementos de la columna fecha tengan esta estructura "d/m/Y" y los 
+elementos que tengan estructura tipo "XX:XX" los podemos almacenar en otra 
+variable.
 
 Es muy importante ver si hay valores faltantes o NA, o valores que en general no 
 tienen demasiado sentido. Entonces, lo que habrá que hacer es:
-Se debería hacer una comprobación para ver si hay alguna observación con valores faltantes para su posterior depuración, ya sea eliminando esa observación, o imputando otro tipo de dato según una serie de criterios.
+Se debería hacer una comprobación para ver si hay alguna observación con valores 
+faltantes para su posterior depuración, ya sea eliminando esa observación, o 
+imputando otro tipo de dato según una serie de criterios.
 
 Con todos estos cambios hechos, y con todas las líneas que podemos encontrar en
 un ticket de Mercadona, ya tendremos un data frame bien pulido, y en teoria, si 
-está hecho de forma eficiente, tendríamos que sacar toda la información sobre nuestra
-compra en este data frame.
+está hecho de forma eficiente, tendríamos que sacar toda la información sobre 
+nuestra compra en este data frame.
 
 
 Ahora expondremos una tabla para poder ver el resultado de nuestro data frame.
