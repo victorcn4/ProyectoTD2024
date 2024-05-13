@@ -363,6 +363,18 @@ límites como anomalías.
 anomalías supervisados o no supervisados, como Isolation Forest, Local Outlier 
 Factor (LOF) o One-Class SVM, para identificar patrones inusuales en los datos.
 
+4. Evaluación y validación de resultados: Una vez aplicados los métodos de 
+detección de anomalías y outliers, es importante evaluar y validar los resultados
+obtenidos. Esto puede implicar la comparación de las anomalías detectadas con 
+información adicional o la retroalimentación de expertos en el dominio para 
+determinar la validez de las detecciones.
+
+5. Interpretación de resultados: Finalmente, se interpreta y se analiza la 
+naturaleza de las anomalías y outliers detectados en los tickets de Mercadona. 
+Esto puede implicar identificar posibles causas detrás de estos comportamientos
+inusuales, como errores de registro, fraudes, promocions especiales o cambios en
+el comportamiento del cliente.
+
 
 
 
