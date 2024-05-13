@@ -380,8 +380,35 @@ Una forma muy común de identificarlos es calculando estadísticas descriptivas
 como el rango intercuartílico (IQR) y luego definir un criterio para identificar
 valores que están por encima o por debajo de ciertos umbrales basados en el IQR.
 
+Unimos todos los tickets en un mismo data frame.
 ```{r}
+#Listamos todos los archivos de tickets en la carpeta 'data'.
+lista_archivos <- list.files(path = "data", full.names = TRUE)
 
+#Creamos una lista para almacenar todos los tickets.
+lista_tickets <- list()
+
+#Verificamos las columnas de cada archivo y almacenamos solo los que tienen la misma estructura.
+columnas_iguales <- NULL
+for (archivo in lista_archivos) {
+  ticket <- read.csv(archivo)
+  if (is.null(columnas_iguales)) {
+    columnas_iguales <- colnames(ticket)
+  } else {
+    if (identical(colnames(tiket), columnas_iguales)) {
+      lista_tickets[[archivo]] <- ticket
+    } else {
+      print(paste("El archivo", archivo, "no tiene las mismas columnas. No se agregará a la lista."))
+    }
+  }
+}
+
+#Unimos todos los tickets en un único dataframe.
+if(length(lista_tickets) > 0) {
+  all_tickets <- do.call(rbind, lista_tickets)
+} else {
+  print("No hay archivos con la misma estructura de columnas.")
+}
 ```
 
 
