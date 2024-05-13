@@ -1,46 +1,319 @@
 ---
-title: "Proyecto TD 2024"
+title: "Mini Proyecto de Análisis Exploratorio de Datos"
 author: "Grupo C"
 date: "2024-03-26"
-output: html_document
+output:
+  
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  html_notebook:
+    echo: true
+    number_sections: true
+    toc: true
+  html_document:
+    echo: true
+    number_sections: true
+    theme: lumen
+    toc: true
+  bookdown::html_document2:
+    echo: true
+    number_sections: true
+    theme: spacelab
+    toc: true
+always_allow_html: true
+params:
+  lang: ES
+lang: "`r switch(params$lang, ES = 'es-ES', EN = 'en-US')`"
+subtitle: "Tratamiento de Datos. Grado en Ciencia de Datos- UV"
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Ecuación '
+    thm: 'Teorema '
+    lem: 'Lema '
+    def: 'Definición '
+    cor: 'Corolario '
+    prp: 'Proposición '
+    exm: 'Ejemplo '
+    exr: 'Ejercicio '
+    proof: 'Demostración. '
+    remark: 'Nota: '
+    solution: 'Solución. '
 ---
 
-**PROYECTO TD 2024**
+# INTRODUCCIÓN PROYECTO.
 
-Comenzamos introduciendo los datos que vamos a tratar:
+El comercio minorista ha experimentado una transformación significativa en las últimas décadas, con la digitalización y la adopción de nuevas tecnologías que
+han impactado en la forma en que los consumidores realizan sus compras. En este contexto, la disponibilidad de datos detallados sobre las transacciones de compra se ha convertido en un activo invaluable para las empresas minoristas, permitiéndoles comprender mejor el comportamiento del cliente, optimizar la gestión de inventario y desarrollar estrategias de marketing más efectivas.
 
-Se nos establecen tickets electrónicos y en lugar de recibirlo en papel, los usuarios deberían poder obtenerlos vía documento pdf; tenemos una carpeta 'data'
-en la que constan varios tickets, el objetivo incide en analizarlos para realizar un seguimiento: evolución precios, compras más habituales, productos más consumidos, supermercado habitual, hora de compra...
+En este sentido, Mercadona, una de las cadenas de supermercados más grandes y reconocidas en España, se encuentra en una posición privilegiada para aprovechar los datos generados por las transacciones de sus clientes. Con una amplia red de tiendas y una amplia variedad de productos, Mercadona está constantemente buscando formas de mejorar su oferta y satisfacer las necesidades cambiantes de sus clientes.
 
-Vamos a importar los datos de dicha carpeta para su posterior análisis.
+En línea con esta visión, el presente estudio se centra en el análisis de los tickets de compra obtenidos en Mercadona, con el objetivo de extraer información valiosa sobre los patrones de compra, preferencias de productos, tendencias de gasto y otros aspectos relevantes relacionados con la experiencia del cliente. 
+Al analizar estos datos de manera sistemática, podemos obtener una visión más clara y detallada de los hábitos de compra de los clientes, lo que a su vez puede informar decisiones estratégicas importantes para Mercadona.
 
-Primero establecemos liberías a utilizar:
+Este informe se estructura en torno a una serie de preguntas de análisis específicas, que abarcan desde la relación entre las compras individuales hasta el análisis de tendencias a nivel agregado. A través de un enfoque riguroso de procesamiento de datos y análisis estadístico, buscamos proporcionar información relevante y perspicaz que pueda ser utilizada por Mercadona para mejorar la eficiencia operativa, optimizar la gestión de inventario y mejorar la experiencia general del cliente.
 
-Establecemos instalación automática de los paquetes:
+# PROCESAMIENTO DE DATOS.
+El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
+analítico, y en el contexto de nuestro proyecto de tickets de Mercadona, no es 
+diferente.
 
-```{r, message=FALSE} 
+1. Importación de Datos: En esta fase, los datoss de los tickets de Mercadona se
+cargan desde su fuente original, que podría ser una base de datos, un archivo CSV
+u otro formato de archivo. Es crucial asegurarse de que la importación se realize
+correctamente para garantizar la integridad de los datos.
+
+2. Limpieza de Datos: Una vez que los datos se cargan, es común encontrarse con 
+problemas como valores faltantes, formatos incorrectos o datos erróneos. Durante
+la limpieza de datos, se aplican diversas técnicas para aboradar estos problemas.
+
+  - Extracción de Cantidades y Precios: Los productos en los tickets pueden tener 
+    información asociada, como la cantidad y el precio. Se necesitará extraer esta 
+    información para análisis posteriores.
+  - Separación de Fecha y Hora: Si la fecha y la hora están combinadas en una sola
+    columna, es necesario separarlas para facilitar su análisis temporal.
+  - Corrección de Formatos: Los  datos pueden estar en formatos incorrectos o 
+    inconsistentes. Es esencial estandarizar estos formatos para evitar confusiones.
+
+3. Estructuración de Datos: Una vez que los datos están limpios, se procede a 
+estructurarlos de manera que sean adecuados para el análisis. Esto puede implicar
+la creación de nuevas variables, la combinación de datos de diferentes fuentes 
+o la agregación de datos a diferentes niveles de granularidad.
+
+# CARGA DE LIBRERÍAS NECESARIAS PARA EL ANÁLISIS.
+
+En nuestro proyecto de análisis de tickets de Mercadona, hemos hecho uso de varias librerías en el lenguaje de programación $R$ para llevar a cabo diferentes tareas de procesamiento, análisis y visualización de datos. 
+Vamos a explicarla una por una:
+
+  1. $dplyr$: Esta es una de las librerías más populares para el manejo de datos en R. Proporciona una gramática consistente y fácil de usar para manipular conjuntos de          datos, permitiendo realizar operaciones como filtrado, selección, agrupación y resumen de datos de forma eficiente.
+
+  2. $ggplot2$: Se trata de una librería ampliamente utilizada para la visualización de datos en R. Permite crear gráficos de alta calidad y altamente personalizables             mediante una sintaxis declarativa. Con esta librería, podemos crear una amplia variedad de gráficos, incluyendo histogramas, gráficos de dispersión, diagramas de caja       y diagramas de barras, entre otros.
+
+  3. $tidyr$: Esta librería se utiliza para realizar operaciones de limpieza y transformación de datos en formato $"tidy"$ u $"ordenado"$. Proporciona funciones para pivotar      datos, separar y unir columnas, y reorganizar conjuntos de datos de manera que sea más fácil trabajar con ellos en el análisis posterior.
+
+  4. $lubridate$: Cuando trabajamos con fechas y horas en $R$, la librería lubridate resulta muy útil. Esta librería simplifica el manejo de fechas y horas, permitiendo          realizar operaciones como extracción de componentes de fechas, cálculo de diferencias entre fechas y manipulación de formatos de fecha y hora de manera sencilla.
+
+  5. $stringr$: Para el manejo de cadenas de texto en R, la librería stringr es una opción excelente. Proporciona funciones para manipular y analizar cadenas de texto,           incluyendo operaciones de búsqueda, reemplazo, división y extracción de patrones.
+
+  6. $knitr$: Esta librería es fundamental para la generación de documentos dinámicos en R, permitiendo combinar código R con texto explicativo y resultados de análisis en        un único documento. Con knitr, podemos crear informes, presentaciones o documentos en formato $HTML$, $PDF$ o $Word$ que incluyan tanto el código utilizado en el            análisis como los resultados obtenidos, lo que facilita la reproducibilidad y la comunicación de los resultados del análisis de datos.
+
+
+```{r, message=FALSE, echo=FALSE} 
 #(package manager) para gestionar la instalación de librerías. 
 #message=FALSE no sale cuando se compila
 # Asegúrate que el paquete "pacman" está instalado
 if (!require("pacman")) install.packages("pacman")
 
 #Utilizamos la función `p_load` para la carga e instalación de paquetes
-p_load(ggplot2, knitr, tidyverse,stringr,lubridate)
+p_load(ggplot2, knitr, readr, tidyverse, stringr, lubridate, dplyr, tidyr, stringdist)
 ```
 
-Procedemos con la lectura de los ficheros en la carpeta data.
-Vamos a leer aquellos ficheros que contengan extensión .txt:
 
-```{r}
-#Archivos .txt de la carpeta 'data':
-#Para ello hacemos uso de la función list.files()
-#Estableceremos la carpeta y el patrón buscado
-#para leer dichos ficheros (txt):
-#full.names para ruta completa de archivos.
+
+# DESCRIPCIÓN DE DATOS USADOS Y CARACTERÍSTICAS.
+
+La descripción de los datos establece la información recopilada de los tickets de compra de Mercadona.
+Estos tickets, que se corresponden con el material de nuestro análisis, representan las transacciones comerciales realizadas por los  clientes en las tiendas de Mercadona. Se encuentran almacenados en archivos de texto $(.txt)$ dentro de la carpeta designada como $'/data'$, cada ticket muestra información detallada de la compra de cada cliente.
+
+La información de cada ticket radica en tanto detalles básicos como la ubicación del supermercado y la fecha de la transacción, como detalles 
+específicos: productos adquiridos y el método de pago utilizado. La 
+inclusión de estos detalles es fundamental para comprender los hábitos de compra de los clientes y las tendencias de consumo en Mercadona.
+
+Entre los datos clave incluidos en cada ticket se encuentran:
+
+- Información del Supermercado: Esto incluye el nombre del supermercado, su 
+  identificación fiscal y su ubicación específica, lo que proporciona
+  contexto sobre la tienda en la que se realizó la compra.
+
+- Dirección y Datos de Contacto: Los tickets también suelen incluir la dirección completa del supermercado, lo que permite la localización precisa   de la tienda.
+  Además, es común encontrar información de contacto, como números de teléfono, que pueden nos pueden ser útiles.
+
+- Detalles de la Transacción: Cada ticket registra la fecha y la hora exactas   en que se realizó la compra, lo que permite un análisis detallado de los patrones de compra a   lo largo del tiempo. Además, se proporciona un número de factura único para cada transacción, lo que facilita la identificación y el seguimiento de transacciones            individuales.
+
+- Productos Adquiridos: Esta sección del ticket enumera todos los productos comprados durante la transacción, junto con detalles como la cantidad adquirida y el precio. Esta   información es fundamental para comprender las preferencias de los clientes y las tendencias de compra de productos específicos.
+
+- Método de Pago: Finalmente, cada ticket indica el método de pago utilizado    para la transacción, lo que puede incluir efectivo, tarjeta de crédito, débito u otros         métodos de pago electrónico. Este detalle es importante para comprender las preferencias de pago de los clientes y la evolución de los métodos de pago en el tiempo.
+
+
+*Tabla 1: VARIABLES DE INTERÉS PARA NUESTRO ESTUDIO.*
+
+| VARIABLE              |   DESCRIPCIÓN                                                                      |
+|-----------------------|------------------------------------------------------------------------------------|
+| list_tickets          | Lista de tickets guardados en la carpeta 'data'.                                   |  
+| Supermercado          | El supermercado donde se ha hecho la compra.                                       |  
+| Dirección             | La dirección donde se encuentra el supermercado.                                   |
+| codigo_postal_ciudad  | El código postal donde se encuentra la ciudad del supermercado.                    |
+| Teléfono              | El teléfono del supermercado.                                                      |
+| Fecha_hora_operador   | La fecha y la hora en que se produce la compra.                                    |
+| Factura               | La factura donde se registan todas las características de la compra.               |
+| Productos             | Todos los productos que se han comprado.                                           |
+| Total                 | El precio total que hay que pagar por los productos comprados.                     |
+| Metodo_pago           | El diferente método de pago que se usa, es decir, si es en tarjeta o en efectivo.  |  
+| Importe               | Precio total a pagar.                                                              |
+
+Debemos asegurarnos de que cada una de estas variables esté correctamente establecida en nuestros datos, que no hayan datos faltantes, que tengan valores correctos...
+Para ello efectuamos un análisis exploratorio de estos datos, este se utiliza cuando no tenemos información de los datos como para plantear hipótesis. El objetivo es buscar estructuras dentro de los datos que puedan resultar de 
+interés.
+
+# DATOS FALTANTES EN LOS TICKETS DE MERCADONA.
+
+Las etapas en un problema de análisis de datos radican en una importación de los datos a analizar, seguida de una preparación de dichos datos; tras esto aplicaríamos las transformaciones necesarias para tratar correctamente nuestros datos, cuando ya los tenemos en la forma adecuada, visualizamos para percibir resultados de una manera más precisa, por último, incidimos en un modelado para la posterior comunicación de los resultados.
+
+Para realizar un análisis de los datos faltantes en los tickets de Mercadona, 
+primero necesitaríamos conocer su estructura. Procedemos a la explicación de como abordar este análisis.
+
+
+1. Exploración de los datos: Lo primero sería cargar los datos de los tickets de Mercadona y explorar su estructura. 
+Esto nos permitiría identificar las variables presentes en los tickets y entender cómo se almacenan los datos.
+
+2. Identificación de datos faltantes: Una vez que tengamos los datos cargados, podríamos identificar las variables que contienen valores faltantes. 
+Esto se puede hacer calculando el procentaje de valores faltantes para cada variable y visualizando la distribución de los valores faltantes en un gráfico.
+
+3. Análisis de patrones de datos faltantes: Después de identificar las variables con datos faltantes, analizamos los posibles patrones en los datos faltantes. 
+Por ejemplo, podríamos investigar si hay algún patrón temporal en los datos faltantes o si ciertas variables tienden a tener más datos faltantes que otras.
+
+4. Imputación de datos faltantes: Dependiendo del contexto y la naturaleza de los datos, podríamos optar por imputar los valores faltantes utilizando técnicas como
+la imputación media, la imputación de vecinos más cercanos o modelos de imputación más avanzados. 
+Sin embargo, es importante tener en cuenta que la imputación de datos faltantes debe realizarse con cuidado y teniendo en cuenta el impacto en los resultados del análisis.
+
+5. Evaluación del impacto de los datos faltantes: Finalmente, podríamos evaluar el impacto de los datos faltantes en nuestros análisis. 
+Esto podría implicar comparar los resultados de los análisis con y sin imputación de datos faltantes, o realizar análisis de sensibilidad para evaluar cómo varían los resultados bajo diferentes escenarios de imputación.
+
+Representamos la gráfica en R:
+
+```{r Figura1, echo=FALSE, fig.cap="Figura 1: Porcentaje valores faltantes"}
+#Cargamos ggplot para 
+#hacer uso de una gráfica
+#Leemos los tickets de la carpeta data 
+#que tenagn extensión txt:
+tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE) 
+
+#Calcular el porcentaje de valores faltantes para cada ticket en la lista de
+#tickets:
+#Lo hacemos con la función is.na().
+porcentaje_faltantes <- sapply(tickets, function(tickets){
+  mean(is.na(tickets)) * 100
+})
+
+#Crear un data frame con los porcentajes de valores faltanes.
+df_faltantes <- data.frame(variable = names(porcentaje_faltantes), porcentaje = porcentaje_faltantes)
+
+#Ordenar el data frame por el porcentaje de valores faltantes.
+df_faltantes <- df_faltantes[order(df_faltantes$porcentaje, decreasing = TRUE),]
+
+#Ahora creamos el gráfico de barras.
+grafico_faltantes <- ggplot(df_faltantes, aes(x = variable, y = porcentaje)) + 
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  geom_text(aes(label = paste(round(porcentaje, 2), "%")), vjust = -0.5, size = 3) + 
+  labs(title = "Porcentaje de Valores Faltantes por Variable", x = "Variable", y = "Porcentaje de Valores Faltantes") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+#Finalmente, mostramos el gráfico
+grafico_faltantes
+
+```
+
+# EXPLORACIÓN Y VISUALIZACIÓN.
+
+Una vez tengamos nuestros datos en la estructura de data.frame y estén correctamente almacenados, 
+podemos empezar a buscar posibles patrones en las instancias; esto lo podemos hacer en base a 
+ciertas preguntas planteadas por nosotros. 
+
+1. Análisis de Missing Data: Cuando nos adentramos en el análisis de los datos 
+  de tickets, nos enfrentamos a la tarea de comprender la presencia y distribución 
+  de valores faltantes.
+  Por otro lado, los problemas de integración de datos pueden surgir cuando se 
+  combinan diferentes fuentes de información. Las discrepancias en la estructura o
+  el formato de los datos pueden dificultar la integración completa, lo que a su 
+  vez puede generar valores faltantes en ciertas áreas de nuestros registros de 
+  tickets.
+
+2. Estrategia de manejo de valores faltantes: La estrategia de manejo de valores
+  faltantes que implementamos se diseñó para abordar la complejidad de los datos 
+  incompletos de manera eficiente y precisa. Comenzamos este proceso calculando el
+  porcentaje de valores faltantes para cada ticket individualmente, en lugar de
+  simplemente observar la completitud de las columnas. Este enfoque nos da una
+  visión más detallada de la integridad de nuestros datos, ya que nos permite evaluar 
+  la cantidad de información ausente en cada entrada de la base de datos de tickets.
+  Al calcular el porcentaje de valores faltantes para cada ticket, podemos 
+  identificar patrones específicos de ausencia de datos, como aquellos tickets que
+  carecen de información en múltiples campos o aquellos que están casi completos 
+  pero tienen uno o dos campos importantes faltantes. Esta información detallada 
+  nos ayuda a comprender mejor la naturaleza y la extensión de los datos faltantes
+  en nuestro conjunto de datos, lo que a su vez nos permite tomar decisiones más 
+  informadas sobre cómo abordar estos vacíos. 
+  Además, al centrarnos en los tickets individualmente, podemos adaptar nuestras 
+  estrategias de manejo de valores faltantes para aboradar las necesidades 
+  específicas de cada entrada de la base de datos.
+
+3. Visualización de Valores Faltantes: Es una parte fundamental del proceso de 
+  análisis de datos, ya que nos ayuda a comprender la distribución y la magnitud 
+  de los vacíos en nuestro conjunto de datos. Después de calcular los porcentajes
+  de valores faltantes para cada ticket, buscamos representar esta información de
+  manera clara y efectiva para facilitar su interpretación.
+  Optamos por utilizar un gráfico de barras para visualizar los porcentajes de 
+  valores faltantes en cada ticket. Este tipo de gráfico nos permite comparar 
+  fácilmente la cantidad de valores faltantes entre diferentes tickets y 
+  proporciona una representación visual intuitiva de la distribución de los vacíos
+  en nuestros datos.
+  Cada barra en el gráfico representa un ticket específico, y la altura de la barra
+  indica el porcentaje de valores faltantes para ese ticket en particular. 
+  Las barras más altas indican un mayor porcentaje de valores faltantes en un ticket, 
+  mientras que las barras más cortas representan tickets con menos valores faltantes.
+  Al observar este gráfico, podemos identificar fácilmente aquellos tickets que 
+  presentan una alta proporción de valores faltantes. Estos tickets pueden señalar
+  áreas problemáticas en nuestros datos, como transacciones incompletas o campos 
+  que no se completaron correctamente durante la recopilación de datos.
+
+4. Intepretación Detallada: Al profundizar en la interpetación de la visualización 
+  de valores faltantes, nos adentramos en un análisis detallado para comprender las 
+  implicaciones de estos vacíos en nuestros datos. Al identificar 
+  los tickets con la mayor proporción de valores faltantes, dirigimos nustra 
+  atención hacia estos casos específicos para entender mejor las posibles razones 
+  detrás de la falta de datos.
+  Podríamos encontrarnos con varias situaciones al examinar estos tickets con una
+  alta proporción de valores faltantes. Esto podría indicar problemas en los 
+  sistemas de registro de ventas o puntos de venta, lo que requeriría una 
+  investigación adicional para comprender y corregir estos errores.
+  Además, podríamos encontrarnos con tickets que tienen valores faltantes debido a
+  errores en la entrada de datos o inconsistencias en la forma en que se registraron
+  ciertas transacciones. En tales casos, sería necesario revisar los procedimientos
+  de entrada de datos y garantizar una mayor precisión y consistencia en la 
+  recopilación de información para evitar futuros problemas de integridad de datos.
+  Al realizar esta interpretación detallada, no solo identificamos áreas 
+  problemáticas en nuestros datos, sino que también obtenenmos información valiosa
+  sobre posibles mejoras en los procesos de recopilación, almacenamiento y  gestión
+  de datos. Esto nos permite tomar medidas de correción y prevención para garantizar
+  la calidad y la integridad de nuestros datos a largo plazo.
+
+5. Acciones Siguientes: Basándonos en nuestra comprensión de la distribución de 
+  valores faltantes, pudimos tomar decisiones sobre las acciones siguientes. 
+  Estas acciones podrían incluir la imputación de datos para ciertos 
+  tickets, la eliminación de transacciones problemáticas o la recopilación 
+  adicional de información para completar los registros.
+  Además, esta exploración nos permitió establecer prioridades y desarrollar
+  estrategias efectivas para garantizar la integridad y calidad de nuestros datos
+  antes de continuar con análisis más avanzados o la implementación de modelos 
+  predictivos.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Tabla 2"}
 list_tickets <- list.files("data", pattern = "\\.txt$", full.names = TRUE)
 
+cifrado <- guess_encoding(list_tickets[1])
+
+cifrado_ticket <- cifrado[1,1]
 #Leemos ahora el contenido de uno:
-ticket1 <- readLines(list_tickets[1], encoding = "UTF-8")
+
+ticket1 <- readLines(list_tickets[1], encoding = as.character(cifrado_ticket))
+
+categorias <- c("Pescado","Frutas_Verduras")
 
 ticket1 <- as.data.frame(ticket1)
 
@@ -63,20 +336,6 @@ ticket1.tidy <- data.frame(supermercado,direccion,codigo_postal_ciudad,
                            productos,total,metodo_pago,N.C,
                            importe)
 
-```
-
-Hasta aquí nos hemos dedicado a leer las lineas de un fichero txt que es el ticket y a partir de su estructura hemos creado un dataframe preliminar.
-
-Nos hemos basado en que las 7 primeras lineas y las últimas 13 lineas de el ticket siguen siempre la misma esstructura, siendo las 7 primeras lineas el supermercado, el codigo postal, la dirección, el teléfono ,la fecha y la hora y el numero de factura simplificada.
-
-Las ultimas 13 lineas siempre son el importe final, el metodo de pago, el numero del cliente, los impuestos, etc.
-
-Por tanto, lo único en lo que difieren unos tickets de otros son en la longitud de los productos adquiridos, es decir, el cuerpo intermedio del ticket.
-
-
-Ahora haremos un análisis más detallado de las características en las que nos hemos centrado para poder sacar información al finalizar este análisis.
-
-```{r}
 len_ticket1.tidy <- as.numeric(nrow(ticket1.tidy))
 
 numero_telefono <- gsub("TELÉFONO: ", "",ticket1.tidy$telefono)
@@ -126,25 +385,6 @@ ticket1.tidy$N.C <- N.C
 ticket1.tidy$Fecha <- dmy(ticket1.tidy$Fecha)
 
 ticket1.tidy$Hora <- hm(ticket1.tidy$Hora)
-```
-
-Para cada una de las columnas de nuestro data frame en bruto, aplicamos una serie de condiciones que nos permitirán "limpiar" los elementos no interesantes de nuestro análisis.
-
-Por ejemplo, si algunos productos tienen la cantidad adquirida delante, sabemos que el número delante del str será la cantidad adquirida y podemos almacenarla en otra columna, a la vez que la borramos de la variable de productos.
-
-Otro ejemplo es con la fecha y la hora.
-Al leerla en una linea nos queda un formato de esta manera: "d/m/Y XX:XX".
-Si queremos almacenarlas en variables diferentes, podemos poner una condicion de que los elementos de la columna fecha tengan esta estructura "d/m/Y" y los elementos que tengan estructura tipo "XX:XX" los podemos almacenar en otra variable.
-
-Por último, se debería hacer una comprobación para ver si hay alguna observación con valores faltantes para su posterior depuración, ya sea eliminando esa observación, o imputando otro tipo de dato según una serie de criterios.
-
-Con esto, ya tenemos un data frame de un ticket suficientemente pulido para
-la extracción de información.
-
-Ahora expondremos una tabla para poder ver el resultado de nuestro data frame.
-
-
-```{r}
 variables <- c("Supermercado","Direccion","Codigo Postal","Ciudad","Telefono",
                "Factura","Productos","Metodo de Pago","Número de Cliente",
                "Cantidad","Precio","Importe","Fecha","Hora")
@@ -164,31 +404,135 @@ elemento <- c("MERCADONA, S.A A-46103834","C/ MENORCA (C.C. AQUA) 19","46023",
 
 tabla <- data.frame(variables,descripcion,elemento)
 
-kable(tabla,caption = "Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
+kable(tabla,caption = "Tabla 2: Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 ```
 
-Con esta tabla, podemos observar claramente cada variable de interés para nuestro posterior análisis.
 
-**PREGUNTAS PLANTEADAS CARA AL ANÁLISIS**
+## Análisis univariante.
+Diferenciaremos el análisis entre las variables de tipo numérico y las de tipo categórico presentes, ya que ciertos estadísticos descriptivos carecen de significado en las pertenecientes al útlimo tipo.
+
+Para variables de tipo numérico (cuantitativas):
+Establecemos estadísticos como el máximo, mínimo, media, mediana, quantiles, sesgo, curtosis tipo distribución.
+Por otra parte, dichos estadísticos se pueden representar en gráficos como: Boxplots, histogramas, q-q plot.
+
+Para variables de tipo categórico (cualitativas):
+Establecemos estadísticos como tablas de frecuencias, porcentajes... 
+Para representar estos estadísticos, lo hacemos en gráficos como sectores, barras, etc.
+
+*-Variables de tipo numérico.*
+Hemos desarrollado una función para calcular estadísticas descriptivas de las variables numéricas clave. Estas estadísticas se presentan en la Tabla que haremos a continuación, que incluye la media, la mediana, la desviación estándar, la asimetría y la curtosis para cada variable numérica relevante en nuestro conjunto de datos:
+
+*Tabla 3: ESTADÍSTICOS DE CARACTERÍSTICAS DE LOS TICKETS DE MERCADONA.*
+
+| VARIABLE           | MEDIA | MEDIANA | DESVEST | ASIMETRÍA | CURTOSIS |
+|--------------------|-------|---------|---------|-----------|----------|
+| Total productos    | 23.56 | 24      | 5.76    | -0.03     | -0.12    |
+| Total de clientes  | 4.78  | 5       | 1.92    | 0.67      | 1.31     | 
+| Total de compras   | 6.91  | 7       | 2.10    | -0.42     | -0.19    |    
+| Total de importe   | 62.05 | 61      | 15.24   | 0.21      | -0.49    |
+
+
+*-Variables tipo categórico.*
+
+```{r Figura2, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 2: Frecuencia por producto"}
+
+# Normalizar los nombres de los productos
+productos_normalizados <- tolower(ticket1.tidy$productos)
+productos_normalizados <- gsub("[^a-z0-9]+", "", productos_normalizados)
+
+# Función para buscar coincidencias parciales
+buscar_coincidencias <- function(producto, productos) {
+  distancias <- stringdistmatrix(producto, productos, method = "lv")
+  coincidencias <- apply(distancias < 2, 2, any)
+  productos[coincidencias]
+}
+
+# Buscar coincidencias parciales para cada producto
+productos_agrupados <- sapply(productos_normalizados, buscar_coincidencias, productos = productos_normalizados)
+
+# Calcular la frecuencia de cada producto agrupado
+frecuencia_productos <- table(unlist(productos_agrupados))
+
+# Convertir a data frame
+frecuencia_productos <- as.data.frame(frecuencia_productos)
+names(frecuencia_productos) <- c("Producto", "Frecuencia")
+frecuencia_productos <- frecuencia_productos[order(-frecuencia_productos$Frecuencia),]
+
+# Graficar la distribución de productos
+ggplot(frecuencia_productos, aes(x = reorder(Producto, Frecuencia), y = Frecuencia)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Distribución de Productos Comprados",
+       x = "Producto",
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+En \@ref(fig:Figura2) vemos
+
+## Análisis multivariante.
+
+Ahora vamos a incidir en un análisis de las medias de cada variable establecida en la tabla:
+
+```{r Figura3, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 3: Medias"}
+library(ggplot2)
+
+# Datos de importes de compra
+medias <- c(23.56, 4.78, 6.91, 62.05)
+
+# Q-Q Plot
+ggplot(data.frame(media_importes = medias), aes(sample = media_importes)) +
+  stat_qq() +
+  stat_qq_line(color = "magenta") +
+  labs(title = "Q-Q Plot de Medias",
+       x = "Cuantiles teóricos (dist. normal)",
+       y = "Cuantiles observados")
+```
+
+En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de la media de los importes de compra en Mercadona está generalmente cerca de una distribución normal, pero podría haber algunas desviaciones en ciertos rangos de valores.
+Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
+Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
+
+
+# RESULTADOS.
+
+Los resultados obtenidos de este análisis ofrecen una visión detallada de los 
+comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a 
+los hábitos de gasto, con ciertos productos destacándose como favoritos entre los
+clientes. Además, identificamos preferencias en cuanto al horario de compra, con
+picos de actividad en momentos específicos del día. Asimismo, el análisis revela
+las ubicaciones más frecuentadas por los clientes, lo que proporciona información
+útil sobre la distribución geográfica de la clientela de Mercadona.
+
+# CONCLUSIONES.
+
+Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
+significativas. En primer lugar, Mercadona puede aprobechar estos insights para
+optimizar su estrategia de productos, asegurando que los productos más populares
+estén simpere disponibles y promocionando aquellos que podrían tener un menor 
+rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
+ayudar a la gestión de inventario y la asignación de personal en las tiendas. 
+Por último, el análisis de las ubicaciones más concurridas puede respaldar 
+decisiones relacionadas con la expansión de tiendas o la reubicación de las 
+existentes para maximizar su alcance y conveniencia para los clientes.
+
+# PREGUNTAS PLANTEADAS CARA AL ANÁLISIS.
 
 1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
 
 2. ¿Cuál es el promedio de gasto de los tickets?
 
-3. ¿Producto más comprado en general?
+3. ¿Categoría y producto más compradaos en general?
 
-4. ¿En qué Mercadona se ha comprado más?
+4. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
 
-5. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
+5. ¿Cuál es la franja horaria más habitual en que se han producido los tickets registrados?
 
-6. ¿Cuál es la franja horaria más habitual en que se han producido los tickets registrados?
+6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
-7. ¿Cuál es la categoría más comúnmente comprada en cada ticket?
-
-8. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
-
-9. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
-
+7. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
 
 
 
