@@ -407,6 +407,42 @@ tabla <- data.frame(variables,descripcion,elemento)
 kable(tabla,caption = "Tabla 2: Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 ```
 
+#Visualización outliers
+
+```{r}
+library(dplyr)
+
+# Obtener una lista de todos los DataFrames que acaben con .tidy
+dataframes <- lapply(ls(pattern = ".tidy$"), get)
+
+# Filtrar solo los data frames de la lista
+dataframes <- Filter(is.data.frame, dataframes)
+
+# Combinar los DataFrames en uno solo
+tickets_juntos <- bind_rows(dataframes)
+na.omit(tickets_juntos)
+tickets_juntos$importe_total<-as.numeric(tickets_juntos$importe_total)
+precios_totales<-unique(tickets_juntos$importe_total)
+boxplot(precios_totales)
+
+# Reemplazar las comas por puntos en la columna Precios
+todos_productos$Precios <- gsub(",", ".", todos_productos$Precios)
+
+# Convertir los precios a formato numérico
+todos_productos$Precios <- as.numeric(todos_productos$Precios)
+
+# Instalar y cargar las bibliotecas necesarias
+
+library(plotly)
+
+# Crear el boxplot interactivo
+interactive_boxplot <- plot_ly(data = todos_productos, y = ~Precios, type = "box")
+
+# Mostrar el boxplot interactivo
+print(interactive_boxplot)
+```
+Podemos afirmar que no existe ningún outlier en los precios totales, sin embargo si hacemos el estudio producto a 
+producto podemos observar varios outliers muy por encima de los percentiles. El máximo se situa en 15.5, puede parecer un precio no muy elevado, pero teniendo en cuenta que la mediana se situa en 2.2 podemos considerar dicho valor como outlier
 
 ## Análisis univariante.
 Diferenciaremos el análisis entre las variables de tipo numérico y las de tipo categórico presentes, ya que ciertos estadísticos descriptivos carecen de significado en las pertenecientes al útlimo tipo.
