@@ -337,6 +337,13 @@ transformaciones necesarias para prepararlos para el análisis. Algunas técnica
 comunes incluyen la extracción de información relevante de los tickets, como
 productos comprados, precios, fechas y horas de compra.
 
+2. Identificación de características relevantes: Para detectar anomalías y 
+outliers, es importante identificar las características relevantes de los tickets
+que se utilizarán en el análisis. Estas características pueden incluir el total 
+gastado en una transacción, la cantidad de productos comprados, la frecuencia de 
+compra de ciertos productos o cualquier otra información relevante que pueda 
+indicar comportamientos inusuales.
+
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
 analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
