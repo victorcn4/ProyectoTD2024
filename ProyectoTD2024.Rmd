@@ -375,6 +375,16 @@ Esto puede implicar identificar posibles causas detrás de estos comportamientos
 inusuales, como errores de registro, fraudes, promocions especiales o cambios en
 el comportamiento del cliente.
 
+Primero, necesitamos realizar un análisis para detectar los outliers y las anomalías.
+Una forma muy común de identificarlos es calculando estadísticas descriptivas 
+como el rango intercuartílico (IQR) y luego definir un criterio para identificar
+valores que están por encima o por debajo de ciertos umbrales basados en el IQR.
+
+```{r}
+
+```
+
+
 
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
