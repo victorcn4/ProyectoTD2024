@@ -587,8 +587,7 @@ En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de 
 Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
 Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
 
-# PREGUNTAS PLANTEADAS CARA AL ANÁLISIS.
-1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
+
 
 # RESULTADOS.
 
