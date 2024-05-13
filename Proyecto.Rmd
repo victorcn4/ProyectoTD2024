@@ -89,7 +89,8 @@ o la agregación de datos a diferentes niveles de granularidad.
 
 # CARGA DE LIBRERÍAS NECESARIAS PARA EL ANÁLISIS.
 
-En nuestro proyecto de análisis de tickets de Mercadona, hemos hecho uso de varias librerías en el lenguaje de programación $R$ para llevar a cabo diferentes tareas de procesamiento, análisis y visualización de datos. 
+En nuestro proyecto de análisis de tickets de Mercadona, hemos hecho uso de varias librerías en el lenguaje de programación $R$ para llevar a cabo diferentes tareas de procesamiento, análisis y visualización de datos.
+
 Vamos a explicarla una por una:
 
   1. $dplyr$: Esta es una de las librerías más populares para el manejo de datos en R. Proporciona una gramática consistente y fácil de usar para manipular conjuntos de          datos, permitiendo realizar operaciones como filtrado, selección, agrupación y resumen de datos de forma eficiente.
@@ -408,6 +409,61 @@ kable(tabla,caption = "Tabla 2: Ejemplo de Muestra",booktabs = TRUE, label ="tab
 ```
 
 #Visualización outliers
+
+La detección de anomalías y outliers en los tickets de Mercadona implica 
+identificar transacciones o patrones de compra que se desvían significativamente
+de lo que sería considerado normal o típico.
+
+1. Preprocesamiento de datos: Antes de detectar anomalías y outliers, es 
+fundamental realizar un preprocesamiento de los datos de los tickets de Mercadona.
+Esto implica limpiar los datos, estructurarlos adecuadamente y realizar 
+transformaciones necesarias para prepararlos para el análisis. Algunas técnicas
+comunes incluyen la extracción de información relevante de los tickets, como
+productos comprados, precios, fechas y horas de compra.
+
+2. Identificación de características relevantes: Para detectar anomalías y 
+outliers, es importante identificar las características relevantes de los tickets
+que se utilizarán en el análisis. Estas características pueden incluir el total 
+gastado en una transacción, la cantidad de productos comprados, la frecuencia de 
+compra de ciertos productos o cualquier otra información relevante que pueda 
+indicar comportamientos inusuales.
+
+3. Selección de métodos de detección: Existen varios métodos y técnicas para 
+detectar anomalías y outliers en los datos de los tickets de Mercadona. Algunos 
+de los métodos comunes incluyen:
+
+- Estadísticas descriptivas: Calculando medidas estadísticas como la media, la 
+mediana, la desviación estándar y la varianza para identificar valores
+extremadamente altos o bajos.
+
+- Gráficos de caja (boxplots): Visualizando la distribución de las características
+relevantes mediante gráficos de caja para identificar valores atípicos.
+
+- Métodos basados en umbrales: Estableciendo umbrales o límites específicos para
+las características y identificando aquellos puntos que caen fuera de estos 
+límites como anomalías.
+
+- Algoritmos de aprendizaje automático: Utilizando algoritmos de detección de 
+anomalías supervisados o no supervisados, como Isolation Forest, Local Outlier 
+Factor (LOF) o One-Class SVM, para identificar patrones inusuales en los datos.
+
+4. Evaluación y validación de resultados: Una vez aplicados los métodos de 
+detección de anomalías y outliers, es importante evaluar y validar los resultados
+obtenidos. Esto puede implicar la comparación de las anomalías detectadas con 
+información adicional o la retroalimentación de expertos en el dominio para 
+determinar la validez de las detecciones.
+
+5. Interpretación de resultados: Finalmente, se interpreta y se analiza la 
+naturaleza de las anomalías y outliers detectados en los tickets de Mercadona. 
+Esto puede implicar identificar posibles causas detrás de estos comportamientos
+inusuales, como errores de registro, fraudes, promocions especiales o cambios en
+el comportamiento del cliente.
+
+Primero, necesitamos realizar un análisis para detectar los outliers y las anomalías.
+Una forma muy común de identificarlos es calculando estadísticas descriptivas 
+como el rango intercuartílico (IQR) y luego definir un criterio para identificar
+valores que están por encima o por debajo de ciertos umbrales basados en el IQR.
+
 
 ```{r}
 library(dplyr)

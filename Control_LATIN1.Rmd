@@ -829,65 +829,23 @@ pesos <- which(is.na(todos_productos$Productos))
 ```
 
 ```{r}
-todos_productos[pesos[1]-1,2] <- todos_productos[pesos[1],2]
-todos_productos[pesos[2]-1,2] <- todos_productos[pesos[2],2]
-todos_productos[pesos[3]-1,2] <- todos_productos[pesos[3],2]
-todos_productos[pesos[4]-1,2] <- todos_productos[pesos[4],2]
-todos_productos[pesos[5]-1,2] <- todos_productos[pesos[5],2]
-todos_productos[pesos[6]-1,2] <- todos_productos[pesos[6],2]
-todos_productos[pesos[7]-1,2] <- todos_productos[pesos[7],2]
-todos_productos[pesos[8]-1,2] <- todos_productos[pesos[8],2]
-todos_productos[pesos[9]-1,2] <- todos_productos[pesos[9],2]
-todos_productos[pesos[10]-1,2] <- todos_productos[pesos[10],2]
-todos_productos[pesos[11]-1,2] <- todos_productos[pesos[11],2]
-todos_productos[pesos[12]-1,2] <- todos_productos[pesos[12],2]
-todos_productos[pesos[13]-1,2] <- todos_productos[pesos[13],2]
-todos_productos[pesos[14]-1,2] <- todos_productos[pesos[14],2]
-todos_productos[pesos[15]-1,2] <- todos_productos[pesos[15],2]
-todos_productos[pesos[16]-1,2] <- todos_productos[pesos[16],2]
-todos_productos[pesos[17]-1,2] <- todos_productos[pesos[17],2]
+# Restar 1 a cada elemento del vector pesos
+pesos <- pesos - 1
 
-todos_productos[pesos[1],2] <- NA
-todos_productos[pesos[2],2] <- NA
-todos_productos[pesos[3],2] <- NA
-todos_productos[pesos[4],2] <- NA
-todos_productos[pesos[5],2] <- NA
-todos_productos[pesos[6],2] <- NA
-todos_productos[pesos[7],2] <- NA
-todos_productos[pesos[8],2] <- NA
-todos_productos[pesos[9],2] <- NA
-todos_productos[pesos[10],2] <- NA
-todos_productos[pesos[11],2] <- NA
-todos_productos[pesos[12],2] <- NA
-todos_productos[pesos[13],2] <- NA
-todos_productos[pesos[14],2] <- NA
-todos_productos[pesos[15],2] <- NA
-todos_productos[pesos[16],2] <- NA
-todos_productos[pesos[17],2] <- NA
-todos_productos[264,] <- NA
-todos_productos[132,] <- NA
+# Iterar sobre los índices en pesos y actualizar los valores en todos_productos
+for (i in 1:length(pesos)) {
+  todos_productos[pesos[i] - 1, 2] <- todos_productos[pesos[i], 2]
+  todos_productos[pesos[i], 2] <- NA
+}
 
+# Filtrar las filas con NA y omitirlas
 todos_productos <- na.omit(todos_productos)
+
 ```
 
+
 ```{r}
-pesos[1] <- pesos[1]-1
-pesos[2] <- pesos[2]-1
-pesos[3] <- pesos[3]-1
-pesos[4] <- pesos[4]-1
-pesos[5] <- pesos[5]-1
-pesos[6] <- pesos[6]-1
-pesos[7] <- pesos[7]-1
-pesos[8] <- pesos[8]-1
-pesos[9] <- pesos[9]-1
-pesos[10] <- pesos[10]-1
-pesos[11] <- pesos[11]-1
-pesos[12] <- pesos[12]-1
-pesos[13] <- pesos[13]-1
-pesos[14] <- pesos[14]-1
-pesos[15] <- pesos[15]-1
-pesos[16] <- pesos[16]-1
-pesos[17] <- pesos[17]-1
+pesos <- pesos - 1
 
 todos_productos$Precios <- gsub("^.","",todos_productos$Precios)
 
@@ -897,11 +855,16 @@ todos_productos <- na.omit(todos_productos)
 
 for (n in 1:nrow(todos_productos)) {
   a <- strsplit(todos_productos[n, 2], " ")[[1]]
-  todos_productos[n, 2] <- a[length(a)]
+  if (length(a) > 0) {
+    todos_productos[n, 2] <- a[length(a)]
+  } else {
+    todos_productos[n, 2] <- NA
+  }
 }
+todos_productos <- todos_productos[todos_productos$Precios != "",]
 
+todos_productos <- na.omit(todos_productos)
 ```
-
 
 ```{r}
 todos_productos$Productos <- as.factor(todos_productos$Productos)
