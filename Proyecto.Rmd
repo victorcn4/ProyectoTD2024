@@ -628,7 +628,6 @@ bebidas, drogueria y charcutería.
 
 4. ¿Cuál es el producto que más se ha comprado?
 
-Como vemos en el gráfico, el producto que más se ha comprado es la uva blanca, la cual tiene una frecuencia de 4 respecto a todos los otros productos que solo tienen frecuencia de 1
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
