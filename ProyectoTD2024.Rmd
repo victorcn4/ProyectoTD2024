@@ -616,7 +616,7 @@ las ubicaciones más frecuentadas por los clientes, lo que proporciona informaci
 **CONCLUSIONES**
 
 Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
-significativas. En primer lugar, Mercadona puede aprobechar estos insights para
+significativas. En primer lugar, Mercadona puede aprovechar estos insights para
 optimizar su estrategia de productos, asegurando que los productos más populares
 estén simpere disponibles y promocionando aquellos que podrían tener un menor 
 rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
