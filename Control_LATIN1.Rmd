@@ -69,8 +69,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket2.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
@@ -276,8 +276,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket11.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos, 
@@ -299,8 +299,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket12.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
@@ -322,8 +322,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket13.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
@@ -368,8 +368,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket15.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
@@ -391,8 +391,8 @@ codigo_postal_ciudad <- ticket[3,]
 telefono <- ticket[4,]
 fecha_hora_operador <- ticket[5,]
 factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
+productos <- ticket[c(8:(len_ticket-17)),]
+importe_total <- ticket[len_ticket-3,]
   
 ticket16.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              telefono, fecha_hora_operador, factura, productos,
@@ -444,52 +444,6 @@ ticket18.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                             telefono, fecha_hora_operador, factura, productos,
                             importe_total)
 
-ticket <- readLines(list_tickets[19])
-
-for (i in ticket){
-  
-  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
-  ticket <- gsub("Ñ","N", ticket)
-  
-}
-ticket <- as.data.frame(ticket)
-len_ticket <- as.numeric(nrow(ticket))
-supermercado <- ticket[1,]
-direccion <- ticket[2,]
-codigo_postal_ciudad <- ticket[3,]
-telefono <- ticket[4,]
-fecha_hora_operador <- ticket[5,]
-factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
-
-ticket19.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
-                            telefono, fecha_hora_operador, factura, productos,
-                            importe_total)
-
-ticket <- readLines(list_tickets[20])
-
-for (i in ticket){
-  
-  ticket <- iconv(ticket, "latin1", "ASCII", sub = "")
-  ticket <- gsub("Ñ", "N", ticket)
-  
-}
-ticket <- as.data.frame(ticket)
-len_ticket <- as.numeric(nrow(ticket))
-supermercado <- ticket[1,]
-direccion <- ticket[2,]
-codigo_postal_ciudad <- ticket[3,]
-telefono <- ticket[4,]
-fecha_hora_operador <- ticket[5,]
-factura <- ticket[6,]
-productos <- ticket[c(8:(len_ticket-14)),]
-importe_total <- ticket[len_ticket-1,]
-
-ticket20.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad, 
-                            telefono, fecha_hora_operador, factura, productos,
-                            importe_total)
-
 ```
 
 ```{r}
@@ -501,8 +455,7 @@ todos_productos <- c(ticket1.tidy$productos, ticket2.tidy$productos,
                      ticket11.tidy$productos,ticket12.tidy$productos,
                      ticket13.tidy$productos,ticket14.tidy$productos,
                      ticket15.tidy$productos,ticket16.tidy$productos,
-                     ticket17.tidy$productos,ticket18.tidy$productos,
-                     ticket19.tidy$productos,ticket20.tidy$productos)
+                     ticket17.tidy$productos)
 
 todos_productos2 <- todos_productos
 todos_productos <- data.frame(todos_productos,todos_productos2)
@@ -515,57 +468,29 @@ View(todos_productos)
 todos_productos$todos_productos <- gsub("[[:punct:]]","",todos_productos$todos_productos)
 View(todos_productos)
 
-todos_productos$todos_productos <- gsub("ENTRADA$|ENTRADA[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("SALIDA|SALIDA[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("PARKING$|PARKING[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("TOTAL$|TOTAL[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("Importe$|Importe[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("P Unit$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("Descripcin$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("IVA$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("BASE IMP",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("CUOTA$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("VISA",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("NC$|NC[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
-todos_productos$todos_productos <- gsub("AID A",NA,todos_productos$todos_productos)
-View(todos_productos)
-
 todos_productos$todos_productos <- gsub("kg",NA,todos_productos$todos_productos)
 View(todos_productos)
 
-todos_productos$todos_productos <- gsub("BANCARIA$|BANCARIA[ ]+$",NA,todos_productos$todos_productos)
-View(todos_productos)
-
 productos_dep <- unique(todos_productos$todos_productos)
+
+colnames(todos_productos) <- c("Productos","Precios")
+
+pesos <- which(is.na(todos_productos$Productos))
+
+for (n in pesos){
+  
+  todos_productos[n,1] <- todos_productos[n+1,2]
+
+}
+
+for (n in pesos){
+  
+  todos_productos[n+1,] <- NA
+}
+
+todos_productos <- na.omit(todos_productos)
 ```
 
-```{r}
-todas_fech_horas
-```
 
 
 ```{r}
@@ -581,7 +506,7 @@ fv4 <- grep("MANZANA",productos_dep)
 
 
 ```{r}
-ticket1.tidy$telefono <- gsub("TELFONO: ", "",ticket1.tidy$telefono)
+ticket1.tidy$telefono <- gsub("[[:alpha:]]", "",ticket1.tidy$telefono)
 
 
 ticket1.tidy$fecha_hora_operador <- gsub("  OP: [123456789]*","",ticket1.tidy$fecha_hora_operador)
@@ -620,6 +545,23 @@ ticket2.tidy$importe_total <- gsub(" ", "", ticket2.tidy$importe_total)
 ticket2.tidy$importe_total <- gsub(",",".", ticket2.tidy$importe_total)
 
 ticket2.tidy$importe_total <- gsub(":","",ticket2.tidy$importe_total)
+
+ticket2.tidy$fecha_hora_operador <- gsub("  OP: [123456789]*","",ticket2.tidy$fecha_hora_operador)
+
+ticket2.tidy <- ticket1.tidy |> separate(col = fecha_hora_operador, 
+                                         into = c("Fecha","Hora"),sep = " ")
+
+ticket3.tidy$Fecha <- dmy(ticket3.tidy$Fecha)
+
+ticket3.tidy$Hora <- hm(ticket3.tidy$Hora)
+
+ticket3.tidy$importe_total <- gsub("[[:alpha:]]", "", ticket3.tidy$importe_total)
+
+ticket3.tidy$importe_total <- gsub(" ", "", ticket3.tidy$importe_total)
+
+ticket3.tidy$importe_total <- gsub(",",".", ticket3.tidy$importe_total)
+
+ticket3.tidy$importe_total <- gsub(":","",ticket3.tidy$importe_total)
 ```
 
 
