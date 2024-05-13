@@ -376,8 +376,6 @@ inusuales, como errores de registro, fraudes, promocions especiales o cambios en
 el comportamiento del cliente.
 
 
-
-
 **PROCESAMIENTO DE DATOS**
 El "Procesamiento de Datos" es una etapa fundamental en cualquier proyecto 
 analítico, y en el contesto de nuestro proyecto de tickets de Mercadona, no es 
