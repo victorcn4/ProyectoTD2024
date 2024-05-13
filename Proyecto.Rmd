@@ -587,6 +587,8 @@ En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de 
 Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
 Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
 
+# PREGUNTAS PLANTEADAS CARA AL ANÁLISIS.
+1. ¿Hay relación entre dos compras aleatorias en nuestra carpeta?
 
 # RESULTADOS.
 
@@ -616,7 +618,8 @@ existentes para maximizar su alcance y conveniencia para los clientes.
 
 2. ¿Cuál es el promedio de gasto de los tickets?
 
-3. ¿Categoría y producto más compradaos en general?
+3. ¿Categoría y producto más compradaos en general? Como podemos ver en la tabla
+de todos los productos, el producto más comprado es queso lonchas cabra. 
 
 4. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
 
