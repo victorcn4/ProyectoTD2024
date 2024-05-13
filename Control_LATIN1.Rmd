@@ -864,9 +864,10 @@ todos_productos[pesos[14],2] <- NA
 todos_productos[pesos[15],2] <- NA
 todos_productos[pesos[16],2] <- NA
 todos_productos[pesos[17],2] <- NA
-todos_productos[268,2] <- NA
-todos_productos[135,2] <- NA
+todos_productos[264,] <- NA
+todos_productos[132,] <- NA
 
+todos_productos <- na.omit(todos_productos)
 ```
 
 ```{r}
@@ -894,13 +895,11 @@ todos_productos$Precios <- gsub("[[:alpha:]]","", todos_productos$Precios)
 
 todos_productos <- na.omit(todos_productos)
 
-for (n in c(1:nrow(todos_productos))){
-  
-  a <- strsplit(todos_productos[n,2], " ")[[1]]
-  
-  todos_productos[n,2] <- a[length(a)]
-  
+for (n in 1:nrow(todos_productos)) {
+  a <- strsplit(todos_productos[n, 2], " ")[[1]]
+  todos_productos[n, 2] <- a[length(a)]
 }
+
 ```
 
 
