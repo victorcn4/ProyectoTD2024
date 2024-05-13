@@ -664,7 +664,8 @@ de todos los productos, el producto más comprado es queso lonchas cabra. Las
 categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
 bebidas, drogueria y charcutería.
 
-4. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
+4. ¿Cuál es el producto que más se ha comprado?
+
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 

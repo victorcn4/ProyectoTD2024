@@ -395,7 +395,7 @@ for (archivo in lista_archivos) {
   if (is.null(columnas_iguales)) {
     columnas_iguales <- colnames(ticket)
   } else {
-    if (identical(colnames(tiket), columnas_iguales)) {
+    if (identical(colnames(ticket), columnas_iguales)) {
       lista_tickets[[archivo]] <- ticket
     } else {
       print(paste("El archivo", archivo, "no tiene las mismas columnas. No se agregará a la lista."))
