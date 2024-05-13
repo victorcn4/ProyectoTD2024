@@ -625,7 +625,7 @@ bebidas, drogueria y charcutería.
 
 4. ¿Cuál es la media de dinero que se gasta la gente cada vez que va a comprar y le dan un ticket?
 
-5. ¿Cuál es el día más habitual en que se han producido los tickets registrados?
+5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
 6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
