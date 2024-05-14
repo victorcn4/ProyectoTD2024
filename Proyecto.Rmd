@@ -1511,7 +1511,7 @@ las ubicaciones más frecuentadas por los clientes, lo que proporciona informaci
 # CONCLUSIONES.
 
 Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
-significativas. En primer lugar, Mercadona puede aprobechar estos insights para
+significativas. En primer lugar, Mercadona puede aprovechar estos insights para
 optimizar su estrategia de productos, asegurando que los productos más populares
 estén simpere disponibles y promocionando aquellos que podrían tener un menor 
 rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
@@ -1530,14 +1530,14 @@ Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
 Lo podemos ver en nuestro análisi univariante
 
 
-3. ¿Categoría y producto más comprados en general? Como podemos ver en la tabla
-de todos los productos, el producto más comprado es queso lonchas cabra. Las 
+3. ¿Categoría y producto más comprados en general? 
+
+Como podemos ver en la tabla de todos los productos, el producto más comprado es queso lonchas cabra. Las 
 categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
 bebidas, drogueria y charcutería.
 
 4. ¿Cuál es el producto que más se ha comprado?
 
-El producto más comprado es el queso de lonchas, un total de 10 unidades se han comprado en total, por lo que sobrepasa con diferencia al resto.
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
