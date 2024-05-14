@@ -4,11 +4,12 @@ author: "Laura Beltran Pellicer, Victor Cardama Noguera, Mara Ferrús Castells, 
 date: "2024-05-14"
 output:
   
-  bookdown::pdf_document2:
-    toc: true
-    toc_depth: 3
+  html_document:
+    echo: true
     number_sections: true
-  pdf_document:
+    theme: lumen
+    toc: true
+  bookdown::pdf_document2:
     toc: true
     toc_depth: 3
     number_sections: true
@@ -16,11 +17,10 @@ output:
     echo: true
     number_sections: true
     toc: true
-  html_document:
-    echo: true
-    number_sections: true
-    theme: lumen
+  pdf_document:
     toc: true
+    toc_depth: 3
+    number_sections: true
   bookdown::html_document2:
     echo: true
     number_sections: true
@@ -1540,7 +1540,7 @@ Los días que más se ha comprado son tanto martes como sábado, con un 23.5% de
 
 6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
-7. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
+7. ¿En que Mercadona se han comprado más productos?
 
 
 
