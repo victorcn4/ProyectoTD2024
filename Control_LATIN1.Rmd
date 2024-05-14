@@ -872,4 +872,3 @@ todos_productos$Productos <- as.factor(todos_productos$Productos)
 table(todos_productos$Productos)
 ```
 
-
