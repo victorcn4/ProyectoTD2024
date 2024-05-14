@@ -1531,6 +1531,7 @@ bebidas, drogueria y charcutería.
 
 4. ¿Cuál es el producto que más se ha comprado?
 
+El producto que más se ha comprado es "Queso Lonchas Cabra"
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
