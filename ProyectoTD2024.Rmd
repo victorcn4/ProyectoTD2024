@@ -1272,7 +1272,6 @@ elemento <- c("MERCADONA, S.A A-46103834","C/ MENORCA (C.C. AQUA) 19","46023",
               "18H 56M 0S")
 
 tabla <- data.frame(variables,descripcion,elemento)
-
 kable(tabla,caption = "Tabla 2: Ejemplo de Muestra",booktabs = TRUE, label ="tab:tabla")
 ```
 
@@ -1333,7 +1332,7 @@ como el rango intercuartílico (IQR) y luego definir un criterio para identifica
 valores que están por encima o por debajo de ciertos umbrales basados en el IQR.
 
 
-```{r,echo=FALSE,warning=FALSE,message=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE, fig.cap='Figura2 : Outliers'}
 # Obtener una lista de todos los DataFrames que acaben con .tidy
 dataframes <- lapply(ls(pattern = ".tidy$"), get)
 
@@ -1342,24 +1341,21 @@ dataframes <- Filter(is.data.frame, dataframes)
 
 # Combinar los DataFrames en uno solo
 tickets_juntos <- bind_rows(dataframes)
-tickets_juntos$importe_total<-as.numeric(tickets_juntos$importe_total)
-precios_totales<-unique(tickets_juntos$importe_total)
-boxplot(precios_totales)
 
-# Reemplazar las comas por puntos en la columna Precios
-todos_productos$Precios <- gsub(",", ".", todos_productos$Precios)
+# Convertir importe_total a tipo numérico
+tickets_juntos$importe_total <- as.numeric(tickets_juntos$importe_total)
 
-# Convertir los precios a formato numérico
-todos_productos$Precios <- as.numeric(todos_productos$Precios)
+# Crear el boxplot de los importes totales
+boxplot(tickets_juntos$importe_total, 
+        main = "Boxplot de Importes Totales",
+        ylab = "Importe Total")
 
-# Crear el boxplot interactivo
-interactive_boxplot <- plot_ly(data = todos_productos, y = ~Precios, type = "box")
 
-# Mostrar el boxplot interactivo
-print(interactive_boxplot)
 ```
+
+
 Podemos afirmar que no existe ningún outlier en los precios totales, sin embargo si hacemos el estudio producto a 
-producto podemos observar varios outliers muy por encima de los percentiles. El máximo se situa en 15.7, puede parecer un precio no muy elevado, pero teniendo en cuenta que la mediana se situa en 2.2 podemos considerar dicho valor como outlier
+producto podemos observar varios outliers muy por encima de los percentiles. 
 
 ## Análisis univariante.
 Diferenciaremos el análisis entre las variables de tipo numérico y las de tipo categórico presentes, ya que ciertos estadísticos descriptivos carecen de significado en las pertenecientes al útlimo tipo.
@@ -1389,7 +1385,7 @@ Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
 
 *-Variables tipo categórico.*
 
-```{r Figura2, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 2: Frecuencia por producto"}
+```{r Figura3, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 3: Frecuencia por producto"}
 # Filtrar los productos que aparecen más de una vez
 productos_filtrados <- todos_productos %>%
   group_by(Productos) %>%
@@ -1406,14 +1402,14 @@ ggplot(productos_filtrados, aes(x = Productos)) +
 
 ```
 
-En \@ref(fig:Figura2) vemos como el producto más comprado, con diferencia, es el "queso lonchas cabra", seguido por "brotes tiernos maxi" y "queso fresco cabra" con la mitad de apariciones. Previamente se ha filtrado los productos para únicamente mostrar los productos que han sido comprados más de dos veces.
+En \@ref(fig:Figura3) vemos como el producto más comprado, con diferencia, es el "queso lonchas cabra", seguido por "brotes tiernos maxi" y "queso fresco cabra" con la mitad de apariciones. Previamente se ha filtrado los productos para únicamente mostrar los productos que han sido comprados más de dos veces.
 
 Como podemos ver en la tabla de todos los productos, el producto más comprado es queso lonchas cabra. Las 
 categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
 bebidas, drogueria y charcutería.
 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, fig.cap='Figura 3: Ocurrencias por semana'}
 filtro_dias<-tickets_juntos%>%group_by(Fecha)%>%summarise(ocurrencias=n())
 
 # Obtener el día de la semana para cada fecha
@@ -1444,6 +1440,7 @@ ggplot(datos_grafico, aes(x = reorder(dia_semana, ocurrencias), y = ocurrencias)
 ```
 
 Los días que más se ha comprado son tanto miércoles como sábado, con un 23.5% de los tickets para cada día.
+Esto puede deberse a que los miércoles, como se trata de mitad de semana, los clientes van a comprar más frecuentemente para "llegar" a final de semana, y los sábados es el dia de la semana no laborable con muchos supermercados abiertos, por tanto la gente puede ir a comprar con más frecuencia.
 
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
@@ -1456,7 +1453,7 @@ facturas_por_direccion <- n_mercadonas2 %>%
   summarise(facturas_distintas = n_distinct(factura))
 ```
 
-```{r,echo=FALSE,warning=FALSE}
+```{r,echo=FALSE,warning=FALSE, fig.cap='Figura 4: Nº Compras'}
 # Crear el primer gráfico
 plot1 <- ggplot(facturas_por_direccion, aes(x = direccion, y = facturas_distintas)) +
   geom_bar(stat = "identity", fill = "green") +
@@ -1485,7 +1482,7 @@ Por otra parte, en el gráfico de la derecha observamos el número de productos 
 
 Ahora vamos a incidir en un análisis de las medias de cada variable establecida en la tabla:
 
-```{r Figura3, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 3: Medias"}
+```{r Figura5, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 5: Medias"}
 library(ggplot2)
 
 # Datos de importes de compra
@@ -1500,7 +1497,7 @@ ggplot(data.frame(media_importes = medias), aes(sample = media_importes)) +
        y = "Cuantiles observados")
 ```
 
-En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de la media de los importes de compra en Mercadona está generalmente cerca de una distribución normal, pero podría haber algunas desviaciones en ciertos rangos de valores.
+En \@ref(fig: Figura5) vemos como el Q-Q plot establece que la distribución de la media de los importes de compra en Mercadona está generalmente cerca de una distribución normal, pero podría haber algunas desviaciones en ciertos rangos de valores.
 Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
 Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
 
