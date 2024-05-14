@@ -1075,6 +1075,20 @@ grafico_faltantes
 
 ```
 
+Observamos que en ningún ticket se encuentra algún "dato faltante". Esto es debido a que no todos los tickets presentan los mismos productos, pero en sí si que siguen una estructura en concreta la cual todos los tickets deben seguir para un procesamiento correcto.
+
+
+# PREGUNTAS PLANTEADAS CARA AL ANÁLISIS.
+
+1. ¿Cuál es el promedio de gasto de los tickets?
+
+2. ¿Categoría y producto más comprados en general? 
+
+4. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
+
+6. ¿Cual ha sido el Mercadona con más productos comprados? ¿Y en el que más compras se han hecho?
+
+
 # EXPLORACIÓN Y VISUALIZACIÓN.
 
 Una vez tengamos nuestros datos en la estructura de data.frame y estén correctamente almacenados, 
@@ -1320,8 +1334,6 @@ valores que están por encima o por debajo de ciertos umbrales basados en el IQR
 
 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE}
-library(dplyr)
-
 # Obtener una lista de todos los DataFrames que acaben con .tidy
 dataframes <- lapply(ls(pattern = ".tidy$"), get)
 
@@ -1330,7 +1342,6 @@ dataframes <- Filter(is.data.frame, dataframes)
 
 # Combinar los DataFrames en uno solo
 tickets_juntos <- bind_rows(dataframes)
-na.omit(tickets_juntos)
 tickets_juntos$importe_total<-as.numeric(tickets_juntos$importe_total)
 precios_totales<-unique(tickets_juntos$importe_total)
 boxplot(precios_totales)
@@ -1374,6 +1385,7 @@ Hemos desarrollado una función para calcular estadísticas descriptivas de las 
 | Total de compras   | 6.91  | 7       | 2.10    | -0.42     | -0.19    |    
 | Total de importe   | 62.05 | 61      | 15.24   | 0.21      | -0.49    |
 
+Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
 
 *-Variables tipo categórico.*
 
@@ -1396,6 +1408,9 @@ ggplot(productos_filtrados, aes(x = Productos)) +
 
 En \@ref(fig:Figura2) vemos como el producto más comprado, con diferencia, es el "queso lonchas cabra", seguido por "brotes tiernos maxi" y "queso fresco cabra" con la mitad de apariciones. Previamente se ha filtrado los productos para únicamente mostrar los productos que han sido comprados más de dos veces.
 
+Como podemos ver en la tabla de todos los productos, el producto más comprado es queso lonchas cabra. Las 
+categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
+bebidas, drogueria y charcutería.
 
 
 ```{r,echo=FALSE}
@@ -1428,80 +1443,8 @@ ggplot(datos_grafico, aes(x = reorder(dia_semana, ocurrencias), y = ocurrencias)
 
 ```
 
-
-## Análisis multivariante.
-
-Ahora vamos a incidir en un análisis de las medias de cada variable establecida en la tabla:
-
-```{r Figura3, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 3: Medias"}
-library(ggplot2)
-
-# Datos de importes de compra
-medias <- c(23.56, 4.78, 6.91, 62.05)
-
-# Q-Q Plot
-ggplot(data.frame(media_importes = medias), aes(sample = media_importes)) +
-  stat_qq() +
-  stat_qq_line(color = "magenta") +
-  labs(title = "Q-Q Plot de Medias",
-       x = "Cuantiles teóricos (dist. normal)",
-       y = "Cuantiles observados")
-```
-
-En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de la media de los importes de compra en Mercadona está generalmente cerca de una distribución normal, pero podría haber algunas desviaciones en ciertos rangos de valores.
-Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
-Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
-
-
-
-# RESULTADOS.
-
-Los resultados obtenidos de este análisis ofrecen una visión detallada de los 
-comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a 
-los hábitos de gasto, con ciertos productos destacándose como favoritos entre los
-clientes. Además, identificamos preferencias en cuanto al horario de compra, con
-picos de actividad en momentos específicos del día. Asimismo, el análisis revela
-las ubicaciones más frecuentadas por los clientes, lo que proporciona información
-útil sobre la distribución geográfica de la clientela de Mercadona.
-
-# CONCLUSIONES.
-
-Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
-significativas. En primer lugar, Mercadona puede aprovechar estos insights para
-optimizar su estrategia de productos, asegurando que los productos más populares
-estén simpere disponibles y promocionando aquellos que podrían tener un menor 
-rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
-ayudar a la gestión de inventario y la asignación de personal en las tiendas. 
-Por último, el análisis de las ubicaciones más concurridas puede respaldar 
-decisiones relacionadas con la expansión de tiendas o la reubicación de las 
-existentes para maximizar su alcance y conveniencia para los clientes.
-
-# PREGUNTAS PLANTEADAS CARA AL ANÁLISIS.
-
-1. ¿Cuál es el promedio de gasto de los tickets?
-
-Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
-Lo podemos ver en nuestro análisi univariante
-
-
-2. ¿Categoría y producto más comprados en general? 
-
-Como podemos ver en la tabla de todos los productos, el producto más comprado es queso lonchas cabra. Las 
-categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
-bebidas, drogueria y charcutería.
-
-3. ¿Cuál es el producto que más se ha comprado?
-
-El producto que más se ha comprado es "Queso Lonchas Cabra"
-
-4. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
-
 Los días que más se ha comprado son tanto miércoles como sábado, con un 23.5% de los tickets para cada día.
 
-
-5. ¿En que Mercadona se han comprado más productos?
-
-6. ¿Cual ha sido el Mercadona con más productos comprados? ¿Y en el que más compras se han hecho?
 
 ```{r,echo=FALSE,message=FALSE,warning=FALSE}
 n_mercadonas<-tickets_juntos%>%group_by(direccion)%>%summarise(apariciones=n())
@@ -1532,9 +1475,54 @@ plot2 <- ggplot(n_mercadonas, aes(x = direccion, y = apariciones)) +
 
 # Unir los dos gráficos en una matriz de 1x2
 grid.arrange(plot1, plot2, ncol = 2)
-
-
 ```
 
+En esta matriz de gráficos tenemos, en la parte izquierda un gráfico donde se muestra el número de compras que se han hecho en cada mercadona. Podemos observar claramente como el del C.C AQUA es en el que más compras se hacen. Teniendo esto en cuenta, la empresa debería tomar medidas como reforzar el personal o agrandar los pedidos. Por lo contrario vemos como tanto el supermercado de la Calle Periodista Azzati, como el de la Calle Valencia son en los que menos se compra.
 
+Por otra parte, en el gráfico de la derecha observamos el número de productos comprados en cada supermercado. Observamos como el del C.C AQUA es en el que más productos se compran lo que reafirma que se deberían mejorar los servicios en dicho establecimiento. 
+
+## Análisis multivariante.
+
+Ahora vamos a incidir en un análisis de las medias de cada variable establecida en la tabla:
+
+```{r Figura3, message=FALSE, warning=FALSE, echo = FALSE, fig.cap="Figura 3: Medias"}
+library(ggplot2)
+
+# Datos de importes de compra
+medias <- c(23.56, 4.78, 6.91, 62.05)
+
+# Q-Q Plot
+ggplot(data.frame(media_importes = medias), aes(sample = media_importes)) +
+  stat_qq() +
+  stat_qq_line(color = "magenta") +
+  labs(title = "Q-Q Plot de Medias",
+       x = "Cuantiles teóricos (dist. normal)",
+       y = "Cuantiles observados")
+```
+
+En \@ref(fig: Figura3) vemos como el Q-Q plot establece que la distribución de la media de los importes de compra en Mercadona está generalmente cerca de una distribución normal, pero podría haber algunas desviaciones en ciertos rangos de valores.
+Dado que la línea diagonal es una referencia de una distribución normal estándar, si los puntos caen cerca de esta diagonal se ajustan bien a una distribución normal. 
+Aquí, parece que la mayoría de los puntos están cerca de la línea, lo que indica que la distribución de los importes de compra en Mercadona se aproxima a una distribución normal.
+
+# RESULTADOS.
+
+Los resultados obtenidos de este análisis ofrecen una visión detallada de los 
+comportamientos de compra en Mercadona. Observamos patrones claros en cuanto a 
+los hábitos de gasto, con ciertos productos destacándose como favoritos entre los
+clientes. Además, identificamos preferencias en cuanto al horario de compra, con
+picos de actividad en momentos específicos del día. Asimismo, el análisis revela
+las ubicaciones más frecuentadas por los clientes, lo que proporciona información
+útil sobre la distribución geográfica de la clientela de Mercadona.
+
+# CONCLUSIONES.
+
+Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
+significativas. En primer lugar, Mercadona puede aprovechar estos insights para
+optimizar su estrategia de productos, asegurando que los productos más populares
+estén simpere disponibles y promocionando aquellos que podrían tener un menor 
+rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
+ayudar a la gestión de inventario y la asignación de personal en las tiendas. 
+Por último, el análisis de las ubicaciones más concurridas puede respaldar 
+decisiones relacionadas con la expansión de tiendas o la reubicación de las 
+existentes para maximizar su alcance y conveniencia para los clientes.
 
