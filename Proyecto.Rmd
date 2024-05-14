@@ -1,7 +1,8 @@
 ---
 title: "Mini Proyecto de Análisis Exploratorio de Datos"
-author: "Grupo C"
-date: "2024-03-26"
+author: "Laura Beltran Pellicer, Victor Cardama Noguera, Mara Ferrús Castells," 
+"Jorge García Pozuelo, Sandra López Llorens"
+date: "2024-05-14"
 output:
   
   pdf_document:
