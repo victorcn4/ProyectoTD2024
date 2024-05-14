@@ -1542,5 +1542,45 @@ Los días que más se ha comprado son tanto martes como sábado, con un 23.5% de
 
 7. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
 
+8. ¿Cual ha sido el Mercadona con más productos comprados? ¿Y en el que más compras se han hecho?
+
+```{r}
+n_mercadonas<-tickets_juntos%>%group_by(direccion)%>%summarise(apariciones=n())
+n_mercadonas
+
+n_mercadonas2<-tickets_juntos%>%group_by(factura)%>%select(direccion)
+# Agrupar por dirección y contar facturas únicas
+facturas_por_direccion <- n_mercadonas2 %>%
+  group_by(direccion) %>%
+  summarise(facturas_distintas = n_distinct(factura))
+
+# Mostrar el resultado
+facturas_por_direccion
+
+library(gridExtra)
+
+# Crear el primer gráfico
+plot1 <- ggplot(facturas_por_direccion, aes(x = direccion, y = facturas_distintas)) +
+  geom_bar(stat = "identity", fill = "green") +
+  labs(title = "Número de compras por dirección",
+       x = "Dirección",
+       y = "Número de facturas distintas") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Crear el segundo gráfico
+plot2 <- ggplot(n_mercadonas, aes(x = direccion, y = apariciones)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Número de productos comprados por dirección",
+       x = "Dirección",
+       y = "Número de productos") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Unir los dos gráficos en una matriz de 1x2
+grid.arrange(plot1, plot2, ncol = 2)
+
+
+```
+
+
 
 
