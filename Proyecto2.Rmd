@@ -1536,7 +1536,7 @@ El producto que más se ha comprado es "Queso Lonchas Cabra"
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
-Los días que más se ha comprado son tanto martes como sábado, con un 23.5% de los tickets para cada día.
+Los días que más se ha comprado son tanto miércoles como sábado, con un 23.5% de los tickets para cada día.
 
 6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
