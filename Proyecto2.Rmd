@@ -1539,10 +1539,8 @@ El producto que más se ha comprado es "Queso Lonchas Cabra"
 
 Los días que más se ha comprado son tanto miércoles como sábado, con un 23.5% de los tickets para cada día.
 
-6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
-
-7. ¿Cual ha sido el Mercadona con más productos comprados? ¿Y en el que más compras se han hecho?
+6. ¿Cual ha sido el Mercadona con más productos comprados? ¿Y en el que más compras se han hecho?
 
 ```{r,echo=FALSE}
 n_mercadonas<-tickets_juntos%>%group_by(direccion)%>%summarise(apariciones=n())
