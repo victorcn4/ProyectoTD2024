@@ -1465,7 +1465,8 @@ ggplot(datos_grafico, aes(x = reorder(dia_semana, ocurrencias), y = ocurrencias)
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
-
+En el gráfico anterior observamos, ordenado de menos apariciones a más, los días en los que más compras se hace. Podemos concluir que los días en los que más se compra son los martes y los sábados con 4 compras cada día. Por lo contrario, existen tres días con 1 sola compra, domingo, miércoles y viernes. Si miramos más allá son resultados con sentido.
+En primer lugar, los domingos en España es festivo por lo que cierran los establecimientos. En cuanto al miércoles y viernes, si nos fijamos, los días que más se compra son directamente previos o posteriores a los que menos, por lo que una vez hecha la compra, pocas veces vas a necesitar el dia siguiente. 
 
 ## Análisis multivariante.
 
@@ -1581,6 +1582,8 @@ grid.arrange(plot1, plot2, ncol = 2)
 
 ```
 
+En esta matriz de gráficos tenemos, en la parte izquierda un gráfico donde se muestra el número de compras que se han hecho en cada mercadona. Podemos observar claramente como el del C.C AQUA es en el que más compras se hacen. Teniendo esto en cuenta, la empresa debería tomar medidas como reforzar el personal o agrandar los pedidos. Por lo contrario vemos como tanto el supermercado de la Calle Periodista Azzati, como el de la Calle Valencia son en los que menos se compra.
 
+Por otra parte, en el gráfico de la derecha observamos el número de productos comprados en cada supermercado. Observamos como el del C.C AQUA es en el que más productos se compran lo que reafirma que se deberían mejorar los servicios en dicho establecimiento. 
 
 
