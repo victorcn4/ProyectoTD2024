@@ -5,11 +5,11 @@ author: "Laura Beltran Pellicer, Victor Cardama Noguera, Mara Ferrús Castells,"
 date: "2024-05-14"
 output:
   
-  bookdown::pdf_document2:
+  pdf_document:
     toc: true
     toc_depth: 3
     number_sections: true
-  pdf_document:
+  bookdown::pdf_document2:
     toc: true
     toc_depth: 3
     number_sections: true
@@ -1337,7 +1337,7 @@ como el rango intercuartílico (IQR) y luego definir un criterio para identifica
 valores que están por encima o por debajo de ciertos umbrales basados en el IQR.
 
 
-```{r,echo=FALSE,warning=FALSE,message=FALSE}
+```{r}
 library(dplyr)
 
 # Obtener una lista de todos los DataFrames que acaben con .tidy
@@ -1383,7 +1383,7 @@ Para variables de tipo categórico (cualitativas):
 Establecemos estadísticos como tablas de frecuencias, porcentajes... 
 Para representar estos estadísticos, lo hacemos en gráficos como sectores, barras, etc.
 
-```{r,warning=FALSE}
+```{r}
 # Filtrar los productos que aparecen más de una vez
 productos_filtrados <- todos_productos %>%
   group_by(Productos) %>%
@@ -1435,9 +1435,7 @@ ggplot(productos_filtrados, aes(x = Productos)) +
 
 En \@ref(fig:Figura2) vemos como el producto más comprado, con diferencia, es el "queso lonchas cabra", seguido por "brotes tiernos maxi" y "queso fresco cabra" con la mitad de apariciones. Previamente se ha filtrado los productos para únicamente mostrar los productos que han sido comprados más de dos veces.
 
-
-
-```{r,echo=FALSE}
+```{r}
 filtro_dias<-tickets_juntos%>%group_by(Fecha)%>%summarise(ocurrencias=n())
 
 # Obtener el día de la semana para cada fecha
@@ -1446,8 +1444,12 @@ dias_semana <- weekdays(filtro_dias$Fecha)
 library(ggplot2)
 library(dplyr)
 
+# Vector con los días de la semana en el orden deseado
+dias <- c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")
+
+
 # Convertir a factor con el orden deseado
-dias_semana <- factor(dias_semana)
+dias_semana <- factor(dias_semana, levels = dias)
 
 # Contar el número de ocurrencias de cada día
 ocurrencias <- table(dias_semana)
@@ -1457,13 +1459,14 @@ porcentaje <- prop.table(ocurrencias) * 100
 
 # Crear un data frame con los resultados
 datos_grafico <- data.frame(dia_semana = names(ocurrencias), 
-                             ocurrencias = as.numeric(ocurrencias))
+                             ocurrencias = as.numeric(ocurrencias),
+                             porcentaje = as.numeric(porcentaje))
 
 # Crear el gráfico de barras
 ggplot(datos_grafico, aes(x = reorder(dias, ocurrencias), y = ocurrencias)) +
   geom_bar(stat = "identity", fill = "skyblue") +
-  geom_text(aes(label = paste(ocurrencias)), vjust = -0.5, color = "black") +
-  labs(title = "Número de Ocurrencias por semana",
+  geom_text(aes(label = paste(round(porcentaje, 1), "%")), vjust = -0.5, color = "black") +
+  labs(title = "Número de ocurrencias por día de la semana",
        x = "Día de la semana",
        y = "Número de ocurrencias") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
@@ -1544,7 +1547,7 @@ Los días que más se ha comprado son tanto martes como sábado, con un 23.5% de
 
 6. ¿Existe alguna relación entre la cantidad de productos de la compra y la hora a la que se ha hecho?
 
-7. ¿Existe alguna correlación entre el tipo de producto comprado y la hora a la que se ha hecho la compra?
+7. ¿En qué Mercadona se han comprado más productos?
 
 
 
