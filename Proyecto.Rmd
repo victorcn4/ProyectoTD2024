@@ -65,7 +65,7 @@ rm(list=ls())
 ```
 
 
-```{r, message=FALSE} 
+```{r, message=FALSE,echo =FALSE} 
 #(package manager) para gestionar la instalación de librerías. 
 #message=FALSE no sale cuando se compila
 # Asegúrate que el paquete "pacman" está instalado
@@ -106,7 +106,7 @@ importe_total <- ticket[len_ticket-1,]
   
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
   
 ticket <- readLines(list_tickets[2])
 
@@ -477,7 +477,7 @@ ticket17.tidy <- data.frame(supermercado, direccion, codigo_postal_ciudad,
                              importe_total)
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 ticket1.tidy$telefono <- gsub("[[:alpha:]]", "",ticket1.tidy$telefono)
 
 ticket1.tidy$fecha_hora_operador <- gsub("  OP: [0123456789]*","",ticket1.tidy$fecha_hora_operador)
@@ -834,7 +834,7 @@ ticket17.tidy$importe_total <- gsub(",",".", ticket17.tidy$importe_total)
 ticket17.tidy$importe_total <- gsub(":","",ticket17.tidy$importe_total)
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 fechas <- c(ticket1.tidy$Fecha,ticket2.tidy$Fecha,ticket3.tidy$Fecha,
             ticket4.tidy$Fecha,ticket5.tidy$Fecha,ticket6.tidy$Fecha,
             ticket7.tidy$Fecha,ticket8.tidy$Fecha,ticket9.tidy$Fecha,
@@ -855,7 +855,7 @@ fechas <- c(wday(fechas[1],label=TRUE),wday(fechas[2],label = TRUE),
             wday(fechas[17],label = TRUE))
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 Productos <- c(ticket1.tidy$productos, ticket2.tidy$productos,
                      ticket3.tidy$productos,ticket4.tidy$productos,
                      ticket5.tidy$productos,ticket6.tidy$productos,
@@ -871,7 +871,7 @@ Precios <- Productos
 todos_productos <- data.frame(Productos,Precios)
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 todos_productos$Productos <- gsub("[[:digit:]]","",todos_productos$Productos)
 
 todos_productos$Productos <- gsub("[[:punct:]]","",todos_productos$Productos)
@@ -883,7 +883,7 @@ productos_dep <- unique(todos_productos$Productos)
 pesos <- which(is.na(todos_productos$Productos))
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 # Restar 1 a cada elemento del vector pesos
 pesos <- pesos - 1
 
@@ -899,7 +899,7 @@ todos_productos <- na.omit(todos_productos)
 ```
 
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 pesos <- pesos - 1
 
 todos_productos$Precios <- gsub("^.","",todos_productos$Precios)
@@ -921,16 +921,9 @@ todos_productos <- todos_productos[todos_productos$Precios != "",]
 todos_productos <- na.omit(todos_productos)
 ```
 
-```{r}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 todos_productos$Productos <- as.factor(todos_productos$Productos)
-
-table(todos_productos$Productos)
 ```
-
-
-
-
-
 
 # INTRODUCCIÓN PROYECTO.
 
@@ -1511,7 +1504,7 @@ las ubicaciones más frecuentadas por los clientes, lo que proporciona informaci
 # CONCLUSIONES.
 
 Basándonos en los resultados obtenidos, podemos extraer varias concluisones 
-significativas. En primer lugar, Mercadona puede aprobechar estos insights para
+significativas. En primer lugar, Mercadona puede aprovechar estos insights para
 optimizar su estrategia de productos, asegurando que los productos más populares
 estén simpere disponibles y promocionando aquellos que podrían tener un menor 
 rendimiento. Además, el conocimiento de los horarios de mayor actividad puede 
@@ -1530,14 +1523,14 @@ Hemos podido comprobar que la media de gasto de los tickets es de 62.05 euros.
 Lo podemos ver en nuestro análisi univariante
 
 
-3. ¿Categoría y producto más comprados en general? Como podemos ver en la tabla
-de todos los productos, el producto más comprado es queso lonchas cabra. Las 
+3. ¿Categoría y producto más comprados en general? 
+
+Como podemos ver en la tabla de todos los productos, el producto más comprado es queso lonchas cabra. Las 
 categorías más compradas son frutas y verduras, pescado, hogar y limpieza, 
 bebidas, drogueria y charcutería.
 
 4. ¿Cuál es el producto que más se ha comprado?
 
-El producto más comprado es el queso de lonchas, un total de 10 unidades se han comprado en total, por lo que sobrepasa con diferencia al resto.
 
 5. ¿Cuál es el día de la semana más habitual en que se han producido los tickets registrados?
 
