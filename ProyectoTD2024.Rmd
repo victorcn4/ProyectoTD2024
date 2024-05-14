@@ -1,7 +1,8 @@
 ---
 title: "Proyecto TD 2024"
-author: "Grupo C"
-date: "2024-03-26"
+author: "Laura Beltran Pellicer, Victor Cardama Noguera, Mara Ferrús Castells," 
+"Jorge García Pozuelo, Sandra López Llorens""
+date: "2024-05-14"
 output: html_document
 ---
 
