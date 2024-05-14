@@ -4,11 +4,11 @@ author: "Grupo C"
 date: "2024-03-26"
 output:
   
-  bookdown::pdf_document2:
+  pdf_document:
     toc: true
     toc_depth: 3
     number_sections: true
-  pdf_document:
+  bookdown::pdf_document2:
     toc: true
     toc_depth: 3
     number_sections: true
@@ -924,6 +924,13 @@ todos_productos <- na.omit(todos_productos)
 ```{r,echo=FALSE,warning=FALSE,message=FALSE}
 todos_productos$Productos <- as.factor(todos_productos$Productos)
 ```
+
+
+
+
+
+
+
 
 # INTRODUCCIÓN PROYECTO.
 
